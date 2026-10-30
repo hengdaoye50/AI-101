@@ -1,0 +1,1317 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="写给人文社科大学生的 AI 入门指南：道、法、术，从理解 AI 到重新组织知识生产与人机协作。"><title>人文社科大学生AI入门101 · 张津华</title><style>:root{--paper:#fdf8f0;--ink:#2c2c2c;--plum:#7e0c6e;--gold:#a68845;--line:#e5dace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Noto Sans SC','Microsoft YaHei',sans-serif}
+.topbar{height:68px;background:#1e121c;color:#d4c08a;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;border-bottom:1px solid #d4c08a30;font-size:12px;letter-spacing:.12em}
+.topbar a{color:inherit;text-decoration:none}
+.topbar button{color:inherit;border-color:#d4c08a55}
+button{font:inherit;border:1px solid var(--line);border-radius:30px;background:transparent;padding:8px 15px;cursor:pointer}
+button:hover{border-color:var(--plum)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #a83296;outline-offset:5px}
+.hero{min-height:590px;background:#1e121c;color:var(--paper);position:relative;overflow:hidden;padding:78px 7vw 0}
+.hero-grid{position:absolute;inset:0;background:linear-gradient(#d4c08a09 1px,transparent 1px),linear-gradient(90deg,#d4c08a09 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(90deg,transparent,#000)}
+.cover{position:relative;z-index:1;max-width:1040px;margin:auto}
+.eyebrow{color:#d4c08a;font:11px 'Fira Code',monospace;letter-spacing:.25em;margin:0 0 35px}
+.hero h1{font-family:'Noto Serif SC',SimSun,serif;font-size:clamp(32px,4.6vw,68px);font-weight:500;line-height:1.5;letter-spacing:.04em;margin:0}
+.hero h1>span{color:#d4c08a}
+.serial{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:1.5em;margin-left:20px}
+.cover-note{font-family:'Noto Serif SC',SimSun,serif;font-size:18px;color:#e1d4df;letter-spacing:.2em}
+.cover-bottom{display:flex;align-items:center;gap:60px;margin:40px 0 52px;font-size:12px;color:#c0abba}
+.cover-bottom a{color:#1e121c;background:#d4c08a;padding:15px 25px;text-decoration:none;border-radius:30px;letter-spacing:.12em}
+.hero-foot{position:relative;border-top:1px solid #d4c08a40;padding:18px 0;display:flex;justify-content:space-between;font:10px monospace;letter-spacing:.16em;color:#a990a6}
+.orbit{width:410px;height:410px;position:absolute;right:4%;top:60px;border:1px solid #d4c08a44;border-radius:50%;transform:rotate(-18deg);box-shadow:0 0 100px #7e0c6e33,inset 0 0 60px #7e0c6e22;display:flex;align-items:center;justify-content:center}
+.orbit:before,.orbit:after{content:'';position:absolute;inset:25px;border:1px dashed #d4c08a35;border-radius:50%}
+.orbit:after{inset:-30px 70px;border-style:solid;transform:rotate(50deg)}
+.orbit b{font:italic 140px Georgia;color:#d4c08a14}
+.orbit small{position:absolute;bottom:55px;color:#d4c08a55;font:9px monospace;letter-spacing:.2em}
+.reading-layout{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:265px minmax(0,780px);gap:65px;padding:54px 38px}
+.sidebar{position:sticky;top:30px;align-self:start;max-height:90vh;overflow:auto;scrollbar-width:thin}
+.sidebar summary{font-size:13px;color:var(--plum);padding:0 0 20px;cursor:pointer}
+.sidebar summary span{font:9px monospace;float:right;color:#8a7b80}
+.sidebar nav a{display:block;color:#73656d;text-decoration:none;font-size:12px;line-height:1.8;padding:8px 12px;border-left:1px solid var(--line)}
+.sidebar nav a.level-1{color:var(--plum);font-weight:600;margin-top:13px}
+.sidebar nav a:hover,.sidebar nav a.active{border-left:2px solid var(--plum);color:var(--plum);background:#7e0c6e08}
+.reading-tools{display:flex;gap:15px;align-items:center;flex-wrap:wrap;padding:0 0 25px;border-bottom:1px solid var(--line);font-size:11px;color:#786c73}
+.reading-tools button{margin-left:auto;font-size:11px}
+article{font-size:16px;line-height:2.1;overflow-wrap:anywhere}
+article p{margin:1.2em 0}
+article h2{font-family:'Noto Serif SC',SimSun,serif;font-size:30px;font-weight:600;line-height:1.6;color:var(--plum);margin:85px 0 32px;padding:24px 0;border-top:1px solid var(--gold)}
+article h2:first-child{font-size:17px;margin:35px 0;border:0;color:#84737e;padding:0}
+article h3{font-size:24px;line-height:1.7;margin:60px 0 24px;color:#5c084f}
+article h4{font-size:19px;margin:36px 0 16px}
+article strong{font-weight:650;background:linear-gradient(transparent 65%,#d4c08a66 65%)}
+.concept,article .concept{color:var(--plum);font-weight:600;background:none}
+.action{text-decoration:underline;text-decoration-color:#a6884590;text-underline-offset:5px;text-decoration-thickness:1px}
+mark{background:#d4c08a66;color:inherit}
+article a{color:var(--plum);text-underline-offset:4px}
+article hr{border:0;border-top:1px solid var(--line);margin:50px 0}
+article blockquote{margin:28px 0;padding:10px 26px;border-left:3px solid var(--gold);background:#d4c08a12;color:#675663}
+article code{font-family:'Fira Code',Consolas,monospace;font-size:.85em;color:var(--plum);background:#7e0c6e07;padding:3px 5px;border-radius:4px}
+article pre{padding:24px;background:#241d25;color:#e7d9e6;border-radius:12px;overflow:auto;line-height:1.8}
+article pre code{padding:0;background:none;color:inherit;font-size:13px}
+article table{display:block;overflow:auto;border-collapse:collapse;font-size:14px}
+article th,article td{border:1px solid var(--line);padding:12px 16px}
+article th{background:#7e0c6e08}
+article img{max-width:100%;height:auto}
+article del{color:#95848d}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#a83296,#d4c08a);z-index:10;width:0}
+.endnote{border-top:1px solid var(--gold);margin-top:70px;padding:30px 0;display:flex;justify-content:space-between;font:11px monospace;color:var(--gold)}
+.endnote a{color:var(--plum)}
+.backtop{position:fixed;bottom:25px;right:25px;background:#1e121c;color:#d4c08a;border:1px solid #d4c08a66;border-radius:50%;width:42px;height:42px;text-align:center;line-height:42px;text-decoration:none}
+.skip{position:fixed;top:-100px;z-index:20;padding:15px;background:var(--paper)}
+.skip:focus{top:8px}
+.focused .sidebar{display:none}
+.focused .reading-layout{display:block;max-width:856px}
+.unmarked article .concept{font-weight:inherit;color:inherit}
+.unmarked article strong{background:none}
+.unmarked article .action{text-decoration:none}
+@media(min-width:1500px){.orbit{right:12%}
+}
+@media(max-width:1000px){.orbit{right:-180px;opacity:.7}
+.reading-layout{grid-template-columns:210px minmax(0,1fr);gap:30px;padding:40px 24px}
+}
+@media(max-width:720px){.topbar{padding:0 20px}
+.topbar>span{display:none}
+.hero{padding:55px 24px 0;min-height:520px}
+.eyebrow{font-size:9px;letter-spacing:.12em}
+.hero h1{font-size:32px}
+.orbit{right:-260px}
+.cover-bottom{gap:20px;align-items:flex-start;flex-direction:column;margin-top:28px}
+.hero-foot{font-size:8px;gap:18px;line-height:1.8}
+.reading-layout{display:block;padding:26px 22px}
+.sidebar{position:static;max-height:none;margin-bottom:30px}
+.sidebar nav{max-height:280px;overflow:auto}
+.sidebar summary{padding-bottom:12px}
+article{font-size:16px}
+article h2{font-size:25px;margin-top:60px}
+article h3{font-size:21px}
+.reading-tools{gap:12px}
+.endnote{gap:16px;font-size:9px}
+.backtop{right:12px;bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+}
+@media print{.hero,.sidebar,.topbar,.reading-tools,.backtop,#progress{display:none}
+.reading-layout{display:block;padding:0}
+article{font-size:11pt}
+article pre{white-space:pre-wrap}
+article h2,article h3,article h4{break-after:avoid}
+}
+
+
+/* AI 101 cover: orbital atlas */
+.hero{padding:64px max(5vw,24px) 0;isolation:isolate;background:#180f1c;min-height:0}
+.hero-grid{background-size:48px 48px;mask-image:linear-gradient(100deg,transparent 10%,#000 90%);opacity:.8}
+.hero-glow{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 83% 30%,#7e0c6e60,transparent 48%),radial-gradient(ellipse at 70% 75%,#c4a26515,transparent 50%)}
+.hero-layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:1.12fr 1fr;align-items:center;gap:25px;min-height:485px}
+.cover{width:100%;margin:0;max-width:none}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.16em;margin-bottom:28px;line-height:1.8}
+.signal{flex:none;width:6px;height:6px;background:#e6c877;border-radius:50%;box-shadow:0 0 16px #e6c877}
+.edition{font-size:11px;letter-spacing:.26em;color:#bda7b9;margin:0 0 16px}
+.hero h1{font-size:clamp(32px,3.8vw,58px);line-height:1.55;letter-spacing:.02em;white-space:nowrap}
+.hero h1>span{display:flex;align-items:baseline;gap:18px;color:#efdcab}
+.serial{font-size:1.35em;margin:0;letter-spacing:-.06em}
+.cover-note{font-size:20px;letter-spacing:.17em;margin:22px 0 12px}
+.cover-caption{font-size:12px;line-height:2;color:#b7a4b5;letter-spacing:.08em}
+.cover-bottom{gap:24px;margin:28px 0 42px;font-size:10px;line-height:1.9}
+.cover-bottom a{display:flex;gap:44px;align-items:center;border:1px solid #e7cd92;background:linear-gradient(120deg,#e9d6a9,#c4a265);box-shadow:0 8px 35px #c4a26518;border-radius:8px;font-size:12px;transition:transform .2s,box-shadow .2s}
+.cover-bottom a:hover{transform:translateY(-3px);box-shadow:0 10px 35px #c4a26535}
+.cover-bottom a span{font-size:20px}
+.orbital-stage{position:relative;aspect-ratio:1;width:100%;max-width:490px;justify-self:end;display:grid;place-items:center}
+.orbital-stage:before{content:'';position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,#d4af3715,transparent 68%);box-shadow:0 0 100px #a8329618}
+.orbit-axis{position:absolute;background:#d4c08a25}.axis-x{height:1px;width:100%}.axis-y{width:1px;height:100%}
+.orbital-ring{position:absolute;border-radius:50%;border:1px solid #d4c08a55;inset:10%}
+.ring-one{border-top:2px solid #f4dfac;border-left-color:transparent;animation:orbital-turn 34s linear infinite;box-shadow:inset 0 0 25px #d4c08a08}
+.ring-one:before{content:'';position:absolute;width:7px;height:7px;background:#f4dfac;border-radius:50%;top:13%;left:13%;box-shadow:0 0 16px #d4c08a}
+.ring-two{inset:2% 22%;transform:rotate(38deg);border-color:#b45aa38a}
+.ring-three{inset:22% 2%;transform:rotate(-28deg);border-style:dashed;border-color:#d4c08a55}
+.orbital-core{display:flex;align-items:center;flex-direction:column;position:relative}
+.orbital-core b{font:italic clamp(100px,12vw,180px)/1.15 'Playfair Display',Georgia,serif;letter-spacing:-.09em;padding-right:.08em;color:#e2cb94;text-shadow:0 0 60px #d4af3725}
+.orbital-core span{font:10px 'Fira Code',monospace;letter-spacing:.4em;color:#d4c08a}.orbital-core small{font:8px monospace;letter-spacing:.22em;color:#a38b9e;margin-top:15px}
+.orbital-label{position:absolute;font:8px 'Fira Code',monospace;letter-spacing:.12em;color:#c4a265}.label-top{top:1%;left:5%}.label-bottom{bottom:1%;right:0}
+.satellite{width:7px;height:7px;position:absolute;border-radius:50%;box-shadow:0 0 20px currentColor}.satellite-one{top:22%;right:18%;background:#b66aa8;color:#b66aa8}.satellite-two{bottom:17%;left:22%;background:#e6ce92;color:#e6ce92}
+.chapter-gates{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;max-width:1240px;margin:24px auto 30px}
+.chapter-gates a{position:relative;display:flex;flex-direction:column;gap:18px;padding:24px;text-decoration:none;border:1px solid #d4c08a30;border-radius:12px;background:linear-gradient(120deg,#ffffff06,#7e0c6e0c);overflow:hidden;transition:background .2s,transform .2s,border-color .2s}
+.chapter-gates a:before{content:'';height:2px;position:absolute;top:0;left:0;right:0;background:linear-gradient(90deg,#a83296,#d4c08a);opacity:.8}
+.chapter-gates a:hover{background:#ffffff0a;transform:translateY(-3px);border-color:#d4c08a88}
+.gate-number{font:9px 'Fira Code',monospace;letter-spacing:.15em;color:#b6a2b0}.gate-title{display:flex;align-items:center;gap:20px;font:30px 'Noto Serif SC',SimSun,serif;color:#efdcab}.gate-title span{font:12px 'Noto Sans SC','Microsoft YaHei',sans-serif;color:#cabac7;line-height:1.7}.gate-arrow{position:absolute;right:20px;top:20px;color:#d4c08a;font-size:17px}
+.hero-foot{max-width:1240px;margin:auto;border-top:0;padding:0 0 24px;color:#b59daf;gap:20px;line-height:1.8}
+main,.cover,.reading-layout>*{min-width:0}article pre{max-width:100%}article hr{margin:44px 0 0}article hr+h3{margin-top:32px}article h2{border-top:1px solid var(--gold)}
+@keyframes orbital-turn{to{transform:rotate(360deg)}}
+@media(max-width:1000px){.hero{padding-top:42px}.hero-layout{gap:10px;min-height:430px}.hero h1{font-size:clamp(29px,3.8vw,44px)}.eyebrow{font-size:8px;letter-spacing:.1em}.cover-note{font-size:17px}.gate-title{gap:12px}.gate-title span{font-size:11px}.chapter-gates a{padding:22px 18px}.gate-arrow{right:14px}.orbital-core b{font-size:clamp(100px,14vw,160px)}}
+@media(max-width:720px){
+ .topbar{height:60px;padding:0 20px;font-size:11px}.topbar button{min-height:40px}
+ .hero{padding:36px 22px 0}.hero-layout{grid-template-columns:minmax(0,1fr);gap:0;min-height:0}.cover{z-index:2}
+ .eyebrow{font-size:8px;letter-spacing:.08em;margin-bottom:25px;gap:8px}.edition{font-size:10px;letter-spacing:.15em}
+ .hero h1{font-size:clamp(27px,7.2vw,48px)}.hero h1>span{gap:15px}.serial{font-size:1.4em}.cover-note{font-size:18px;margin-top:18px}.cover-caption{font-size:12px}
+ .cover-bottom{flex-direction:row;align-items:center;gap:18px;margin:25px 0 0}.cover-bottom a{padding:11px 16px;gap:20px;min-height:48px;font-size:11px}.cover-bottom>span{font-size:9px;letter-spacing:0}
+ .orbital-stage{justify-self:center;width:min(76vw,340px);margin:26px 0 18px}.orbital-core b{font-size:120px}.orbital-core span{font-size:8px}.orbital-core small{font-size:7px}.orbital-label{font-size:7px}
+ .chapter-gates{grid-template-columns:1fr;gap:10px;margin:12px 0 24px}.chapter-gates a{padding:16px 18px;gap:10px;min-height:96px}.gate-title{font-size:25px;gap:20px}.gate-title span{font-size:12px}.gate-number{font-size:8px}.gate-arrow{top:20px;right:20px}
+ .hero-foot{font-size:8px;letter-spacing:.06em;flex-wrap:wrap;gap:6px 18px;padding-bottom:20px}
+ .reading-layout{padding:28px 20px}.sidebar nav a{padding:10px 12px}.sidebar summary{min-height:40px}.reading-tools{gap:12px;font-size:10px}.reading-tools button{min-height:40px;margin-left:0}
+ article h2{font-size:24px;line-height:1.65}article h3{font-size:21px;line-height:1.7}article pre{padding:18px}article blockquote{padding:8px 18px}.endnote{flex-wrap:wrap;line-height:1.8}
+}
+@media(max-width:360px){.hero{padding-inline:18px}.cover-bottom{gap:12px}.cover-bottom a{gap:12px}.reading-layout{padding-inline:18px}.reading-tools{gap:10px}.eyebrow{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.orbital-ring{animation:none}.cover-bottom a,.chapter-gates a{transition:none}}
+@media print{.chapter-gates{display:none}}
+</style></head><body><a class="skip" href="#reading">跳转正文</a><div id="progress" aria-hidden="true"></div><header class="topbar"><a href="https://jinhuazhang.top/portfolio/">← 作品集</a><span>JASPER ZHANG / FIELD NOTES</span><button id="focus" aria-pressed="false">专注阅读</button></header><section class="hero" aria-labelledby="cover-title">
+<div class="hero-grid" aria-hidden="true"></div><div class="hero-glow" aria-hidden="true"></div>
+<div class="hero-layout"><div class="cover">
+<p class="eyebrow"><span class="signal" aria-hidden="true"></span> A FIELD GUIDE FOR THE AI GENERATION</p>
+<p class="edition">人文 × 社会科学 × 人工智能</p>
+<h1 id="cover-title">人文社科大学生<br><span>AI 入门<span class="serial">101</span></span></h1>
+<p class="cover-note">从题海走进 AI 时代</p>
+<p class="cover-caption">保持好奇，形成判断。<br>从一次对话，走向属于自己的人机协作。</p>
+<div class="cover-bottom"><a href="#reading">进入阅读 <span aria-hidden="true">↗</span></a><span>三篇 · 十四章<br>一份面向未来的入门指南</span></div>
+</div>
+<div class="orbital-stage" aria-hidden="true"><div class="orbit-axis axis-x"></div><div class="orbit-axis axis-y"></div><div class="orbital-ring ring-one"></div><div class="orbital-ring ring-two"></div><div class="orbital-ring ring-three"></div><div class="orbital-core"><span>HUMAN × AI</span><b>101</b><small>THE NEXT CHAPTER</small></div><span class="orbital-label label-top">01 / UNDERSTAND</span><span class="orbital-label label-bottom">02 / EXPLORE → 03 / CREATE</span><span class="satellite satellite-one"></span><span class="satellite satellite-two"></span></div></div>
+<nav class="chapter-gates" aria-label="三篇快速入口"><a href="#section-3"><span class="gate-number">01 / MINDSET</span><span class="gate-title">道<span>理解 AI，也理解自己</span></span><span class="gate-arrow" aria-hidden="true">↗</span></a><a href="#section-29"><span class="gate-number">02 / METHOD</span><span class="gate-title">法<span>重新组织知识生产</span></span><span class="gate-arrow" aria-hidden="true">↗</span></a><a href="#section-61"><span class="gate-number">03 / PRACTICE</span><span class="gate-title">术<span>走向真正的人机协作</span></span><span class="gate-arrow" aria-hidden="true">↗</span></a></nav>
+<div class="hero-foot"><span>HUMANITIES &amp; SOCIAL SCIENCES</span><span>向未来，保留自己的思考。 ↘</span></div></section><div class="reading-layout"><aside class="sidebar"><details open><summary>阅读目录 <span>CONTENTS</span></summary><nav aria-label="文章目录"><a class="level-1" href="#section-2">引言：从题海走进 AI 时代</a><a class="level-1" href="#section-3">第一篇 · 道：如何理解 AI，如何理解自己</a><a class="level-2" href="#section-4">一、从聊天窗口说起：认识 AI 背后的五个概念</a><a class="level-2" href="#section-11">二、与 AI 协作：表达、分工与主导权</a><a class="level-2" href="#section-18">三、从“会用”到“善用”：Taste、Skill 与 AI Slop</a><a class="level-2" href="#section-24">四、AI 原生一代：重新理解学习</a><a class="level-1" href="#section-29">第二篇 · 法：重新组织我们的知识生产</a><a class="level-2" href="#section-30">五、文献阅读：从理解单篇文章到进入学术对话</a><a class="level-2" href="#section-36">六、量化研究：从代码执行到交互式数据探索</a><a class="level-2" href="#section-42">七、质性研究：让 AI 成为思想的助产士</a><a class="level-2" href="#section-50">八、学术写作：让论证与证据进入文字</a><a class="level-2" href="#section-57">九、跨越方法边界：AI 为人文社科研究带来的新可能</a><a class="level-1" href="#section-61">第三篇 · 术：从零开始，走向真正的人机协作</a><a class="level-2" href="#section-62">十、Chatbot：从第一次有效对话开始</a><a class="level-2" href="#section-68">十一、Tool：让 AI 交付一份真正可用的成果</a><a class="level-2" href="#section-75">十二、Copilot：让 AI 持续参与一项完整的工作</a><a class="level-2" href="#section-82">十三、Agent：从委托任务到自主执行</a><a class="level-2" href="#section-88">十四、从一次真实任务出发：建立自己的 AI 使用方式</a><a class="level-1" href="#section-91">结语：在变化中生长</a></nav></details></aside><main id="reading"><div class="reading-tools"><span>阅读标记</span><strong class="concept">核心概念</strong><mark>关键判断</mark><span class="action">行动建议</span><button id="marks" aria-pressed="true">隐藏标记</button></div><article><h2 id="section-1">人文社科大学生 AI 入门 101</h2><h2 id="section-2">引言：从题海走进 AI 时代</h2><p>不妨设想这样一种情境（<del>欢迎来到2077（误）</del>）。</p>
+<p>你刚刚结束高考，进入大学。过去十几年里，你已经很熟悉一套学习方式：记忆知识、理解例题、反复练习、应对考试。学习目标清晰，材料相对固定，评价标准也大多明确。</p>
+<p>然而，当你第一次走进大学课堂，事情开始发生变化。</p>
+<p>老师可能要求你在一周内阅读十来篇中英文文献，围绕一个陌生的社会现象提出问题并做一次展示，或者尝试发问卷、做访谈……你会逐渐发现，大学里有许多问题没有标准答案，甚至连问题本身都需要由你来发现和定义。</p>
+<p>与此同时，另一种变化也在发生。</p>
+<p>在你埋头备考的几年里，<strong class="concept">人工智能</strong>已经悄然改变了许多人获取信息、处理材料和完成工作的方式。一些过去需要反复查资料、学习软件、花上几个小时才能完成的事情，如今可能通过几轮对话就能得到相当不错的初步结果。AI 也逐渐走出了最初的聊天窗口，开始检索网页、读取文件、调用程序，甚至在一定范围内自主执行复杂任务。</p>
+<p>对刚刚进入大学的你来说，这或许是一个有些奇妙的时代：许多知识与技术的使用门槛正在降低。你可以不懂编程就尝试数据分析，不熟悉排版软件也能制作图表，阅读外文文献不再像过去那样困难。另一方面，当获得答案、生成作品越来越容易，新的问题也随之出现：我们还需要学习什么？怎样判断 AI 给出的答案是否可靠？当它能够帮助我们完成越来越多的工作时，我们自己究竟应该做些什么？</p>
+<p>对于人文社科学生，这些问题尤其值得认真思考。</p>
+<p>我们的学习与研究关乎对人、历史、文化和社会的理解。我们需要阅读复杂文本，在不同理论之间展开对话，解释具体的制度、行动与社会过程；也会在材料不完整、观点相互冲突的情况下，努力形成审慎的判断。很多时候，找到一个恰当的问题，比迅速给出一份完整的答案更难。</p>
+<p>AI 可以为这些工作提供强大的帮助。但它也可能让我们不知不觉地满足于现成的解释、流畅的文字和看似完整的成果。如果把学习 AI 简单理解为掌握几个 Prompt、安装几个工具，或者让模型替我们完成更多作业，那么我们或许会变得越来越“高效”，却未必真正变得更加善于思考。</p>
+<p>我们需要一种更有<strong class="concept">主体性</strong>的使用方式。</p>
+<p>这种<strong class="concept">主体性</strong>不意味着事事亲力亲为，也不意味着时时刻刻提防 AI。恰恰相反，我们完全可以大胆地把适合机器完成的任务交出去，利用新技术突破个人时间、知识储备和技术能力的限制。同时，我们仍要理解自己的工作，检查关键证据，并对最终采用的成果负责。</p>
+<p><strong>在这个意义上，学会使用 AI，也是在学习如何重新组织自己的认知劳动。</strong></p>
+<p>这篇文章正是从这样的想法出发。</p>
+<p>它主要写给刚刚进入大学、对 AI 还不熟悉的人文社科学生，也希望给已经开始使用 AI、却还没有形成稳定方法的同学提供一些参考。它不会是一份很快就过时的模型排行榜，也不要求每个人一开始就学习编程、配置环境或者部署复杂的智能体系统。</p>
+<p>我们会先讨论一些基本问题：AI 究竟是什么？模型、工具和智能体之间有什么关系？人与 AI 应该怎样协作？当生成变得越来越容易，为什么<strong class="concept">判断力</strong>和 <strong class="concept">Taste</strong> 反而值得重视？</p>
+<p>随后，我们进入人文社科学习与研究的实际场景，讨论 AI 如何参与文献阅读、量化研究、质性研究和学术写作。最后，再从最普通的聊天窗口开始，一步一步接触工具调用、持续协作和 <strong class="concept">Agent</strong> <strong class="concept">工作流</strong>。</p>
+<p>我把这三个层次概括为：<strong>道、法、术</strong>。所谓“道”，是理解技术与自身；“法”，是组织学习和研究；“术”，是学会具体操作。三者不是一套必须按顺序升级的等级制度，而是相互支撑的三个方面。</p>
+<p>技术还会不断变化。这篇指南更希望帮你建立一种信心：面对新的技术与工具，不必因为陌生而畏惧，也无需因为它们强大就盲目追随。你可以从自己的问题出发，在不断尝试、判断与修正中，逐渐找到适合自己的工作方式。</p>
+<p>毕竟，我们正在进入一个需要终身学习的时代。学会适应变化，本身就是一种重要的能力。</p>
+<h2 id="section-3">第一篇 · 道：如何理解 AI，如何理解自己</h2><h3 id="section-4">一、从聊天窗口说起：认识 AI 背后的五个概念</h3><p>我们不妨从一个大家可能比较熟悉的场景开始。</p>
+<p>《哲学概论》课程进行到期中，娟子老师一般会布置一篇小论文，并且允许大家使用 AI 辅助完成。</p>
+<p>你此前可能还没有接受过系统的哲学训练，面对这样一项开放性的作业，一时不知道从哪里开始。于是，你打开 ChatGPT，问它：“我要写一篇哲学概论的期中小论文，有没有什么值得讨论的问题？”</p>
+<p>几秒钟后，AI 便列出一些选题：人是否拥有自由意志？我们如何确定自己所认识的世界是真实的？道德判断是否具有客观标准？它还简要介绍了这些问题背后的哲学争论。</p>
+<p>你对自由意志比较感兴趣，于是继续追问。AI 开始介绍决定论、相容论等立场，帮你梳理其中的分歧。但听它讲述还不够，你希望阅读真正的哲学文献，于是请它查找资料。它开始检索网络，返回一些可供核对的文章和书目。</p>
+<p>接着，你把老师提供的课程资料和自己找到的几份 PDF 上传，要求 AI 比较不同哲学家的论证。等论文思路逐渐清楚，你又请它检查论证中的逻辑漏洞，尝试提出反对意见，并帮忙处理文章的语言和格式。</p>
+<p>在这个过程中，你面对的始终是同一个聊天窗口，但 AI 已经完成了几种性质不同的工作：最初是理解问题、生成回答；后来开始获取外部信息、阅读文件；再往后，还可能调用程序修改文档，或者自主安排多个操作步骤。</p>
+<p><strong>这些能力究竟来自哪里？</strong></p>
+<p>要回答这个问题，我们先认识五个常见概念：<strong>Model、Tool、Harness、Agent 和 Skill</strong>。它们并非从低到高排列的五种 AI，而是理解一套 AI 系统的不同切面。</p>
+<h4 id="section-5">1. Model：我们究竟在与什么对话？</h4><p>Model，就是模型。我们平时提到 GPT、Claude、Gemini、DeepSeek，有时指模型家族，有时指具体模型或产品。需要注意，模型和日常使用的 AI 应用并不是一回事。比如 ChatGPT 是一款产品，GPT 则是支撑其部分能力的模型家族。我们看到的是聊天界面，背后还有许多不直接呈现在屏幕上的机制。</p>
+<p>那么，<strong class="concept">大语言模型</strong>（Large Language Model，LLM）是什么？</p>
+<p>对初学者而言，暂时不需要钻进神经网络的数学原理。可以先理解：模型通过大规模训练，学习语言、知识以及各种模式与关联，并经过后续训练进一步调整行为。生成文字时，它会根据上下文逐步预测并生成后续的 <strong class="concept">Token</strong>。<strong class="concept">Token</strong> 是模型处理文本的基本单位，可能对应一个字、一个词、一段词语或标点，并不严格等于日常所说的“字数”。</p>
+<p>这乍听起来像一场复杂的“文字接龙”，但如果因此认为模型只会机械拼凑词句，就显然低估了现代<strong class="concept">大语言模型</strong>的能力。它们能够解释概念、比较理论、编写程序、辅助推理，也能围绕一个尚不成熟的研究想法与你持续讨论。</p>
+<p>我们无须因为它的生成过程具有统计性质，就否认其展现的复杂能力；同样，也没有理由仅凭它能流畅讨论哲学，就直接断言它以与人相同的方式理解世界。</p>
+<p>初学者还需要知道三件事。</p>
+<p><strong>第一，模型拥有的知识，不等于一个可以随时逐条核对的数据库。</strong> 你问它某位哲学家是否在某年发表过关于自由意志的论文，它可能给出一个煞有介事的标题、期刊和卷期，但那篇论文未必真实存在。人们通常把这类编造或缺乏依据的输出称为“幻觉”（Hallucination）。回答得流畅、自信，并不意味着证据已经得到核验。</p>
+<p><strong>第二，模型处理信息有上下文限制。</strong> 你当前的提问、前面的对话、上传的材料以及系统提供的信息，都可能占用上下文窗口（Context Window）。对话足够长时，早期内容可能被截断、压缩或遗漏。<span class="action">即使产品提供某种记忆功能，也不要假定它能够永久、完整、准确地记住每一句话。</span>做长期项目时，把研究问题、重要材料和阶段性判断整理到独立文件中，比只依赖聊天记录更稳妥。</p>
+<p><strong>第三，AI 产品不一定只处理文字。</strong> 一些模型能够理解图片、音频等信息；一些产品还会组合多个模型与外部工具来生成图像、视频或处理文件。这就是我们经常听到的“多模态”能力。能否使用这些功能，取决于具体模型和产品的配置。</p>
+<p>知道这些，我们就能比较清楚地判断：哪些事情可以直接问模型，哪些需要核验，哪些还需要借助外部能力。</p>
+<h4 id="section-6">2. Tool：模型怎样获得外部能力？</h4><p>回到期中论文的例子。AI 帮你找到网页、读取课程文件，甚至制作出一份可编辑的阅读计划表。它并不一定只是“想出了”这些内容。</p>
+<p>一个模型即使能写出正确的 Python 代码，也不意味着它天然能够执行代码；即使能介绍某个网站，也不意味着它已经访问过该网站。</p>
+<p>因此，我们需要第二个概念：Tool，即工具。</p>
+<p>搜索引擎、代码执行环境、文件读取程序、数据库接口，以及其他软件开放的功能，都可以成为 AI 使用的工具。当系统提供相应接口和权限时，模型可以发起工具调用，由外部程序执行操作，再将结果返回。</p>
+<p>例如，你要求 AI 将老师的阅读清单整理成 Excel。如果当前产品有文件处理能力，它可以实际创建表格；如果没有，也许只能给出一份可以复制到 Excel 的文本。这两种结果显然不同。</p>
+<p>这里最重要的一点是：<strong>知道怎样做，与实际具有完成操作的工具和权限，是两回事。</strong></p>
+<p>模型可能知道怎样检索中国知网，但没有合法访问权限，就不能凭空取得付费文献全文。它能够生成网页代码，也不等于已经把网页部署上线。</p>
+<p>以后，当 AI 告诉你“已经完成”时，不妨多看一眼：它究竟只是描述了一套方案，还是已经实际执行，并留下了可以检查的结果？</p>
+<h4 id="section-7">3. Harness：同一个模型，为什么在不同产品里表现不同？</h4><p>现在我们认识了模型和工具。但你可能又会发现：两个产品使用的模型相近，其中一个主要陪你聊天，另一个却能持续处理文件、运行程序，甚至把一份复杂的任务分成多个步骤。</p>
+<p>这就涉及 <strong class="concept">Harness</strong>。</p>
+<p><strong class="concept">Harness</strong> 原有“挽具”“控制装置”等含义，在 AI 领域通常指围绕模型搭建的运行与编排机制。它尚无完全统一的定义，这里可以理解为：<strong>让模型在一定规则与环境中协调工具、管理上下文、组织执行过程的一套运行系统。</strong></p>
+<p>例如，你要求 AI 整理自由意志问题的阅读指南。系统可能需要先确定检索范围，调用搜索工具，读取文献，保存中间笔记，再生成最终文件。如果某篇资料打不开，它可能需要调整检索方式；如果涉及修改重要文件，则可能需要请求你的批准。</p>
+<p>这些事情除了需要模型的理解与决策，还需要工具注册、任务状态、<strong class="concept">上下文管理</strong>和权限控制等运行机制。它们便属于 <strong class="concept">Harness</strong> 所关注的范围。</p>
+<p>因此，<strong>同一个模型，在不同 Harness 中可能有很不一样的实际表现。</strong> 评价 AI 产品时，只看模型排行榜并不够；还要看它能访问什么、能执行什么，以及工作过程是否透明、可干预、可恢复。</p>
+<h4 id="section-8">4. Agent：当 AI 能够自己安排工作</h4><p>接下来是 <strong class="concept">Agent</strong>，也就是大家常说的“智能体”。</p>
+<p>它在学界和产业界没有完全统一的定义。入门阶段，可以先抓住一个核心特征：<strong>在给定目标与约束后，系统能够在一定程度上自主决定执行步骤、调用工具，并根据得到的结果调整下一步行动。</strong></p>
+<p>如果你问普通聊天机器人“怎样准备哲学概论的期中论文”，它可能列出选题、查文献、写提纲等建议。而在一个具备合适工具和权限的 <strong class="concept">Agent</strong> 环境中，你可以让它阅读指定目录里的课程资料、检索公开文献、整理阅读目录，并生成一个可编辑的工作计划。你不必逐次指示每一个文件如何打开、每一步使用什么工具。</p>
+<p>这里可以顺便区分 Workflow（<strong class="concept">工作流</strong>）与 <strong class="concept">Agent</strong>。<strong class="concept">工作流</strong>通常按事先设计的路径执行，例如“读取文件—按规则分类—输出表格”；<strong class="concept">Agent</strong> 则强调根据任务进展动态选择行动。当然，实际产品往往把预设<strong class="concept">工作流</strong>和动态决策结合起来，并没有一道绝对清晰的分界线。</p>
+<p><strong class="concept">Agent</strong> 的“自主”也不意味着“无限授权”。允许它读取一份文献，与允许它删除文件、发送邮件，是完全不同的权限。对于可能造成重大后果、难以撤销的操作，仍需要明确的边界与人工确认。</p>
+<p>还有一件事需要记住：<strong>能够自主完成步骤，不等于从一开始就正确理解目标。</strong> 如果你误解了一位哲学家的立场，<strong class="concept">Agent</strong> 可能非常高效地完成一整套建立在错误前提上的整理工作。执行越便捷，越需要我们认真检查目标与结果。</p>
+<h4 id="section-9">5. Skill：让 AI 复用成熟的工作方法</h4><p>最后是 <strong class="concept">Skill</strong>。</p>
+<p>你可能在 AI 社区里看到过“最强论文写作 <strong class="concept">Skill</strong>”“一键生成学术 PPT”之类的分享。它们容易让人觉得，<strong class="concept">Skill</strong> 是一种安装之后就能凭空获得的专业能力。</p>
+<p>实际上，在目前流行的一类 <strong class="concept">Agent</strong> <strong class="concept">Skill</strong>s 规范中，<strong class="concept">Skill</strong> 通常是包含操作说明的文件夹，使用 <code>SKILL.md</code> 等文件写明何时适用、怎样执行，并可以附带模板、参考资料或脚本。你可以把它理解为一份供 AI 反复使用的工作手册。</p>
+<p>例如，你希望 AI 在检查哲学论文时，先识别核心论题，再拆解主要前提和结论，随后寻找反对意见。把这些要求整理成一份 <strong class="concept">Skill</strong>，后续遇到相似任务，系统就有机会复用这套方法。</p>
+<p>不过，<strong class="concept">Skill</strong> 并不会凭空增加模型的基础能力，也不能绕开工具权限。它能够复用某种做法，却不能保证这种做法始终合理。好的工作经验适合沉淀；未经检验的模板，也可能让错误被反复复制。关于为什么不要迷信 <strong class="concept">Skill</strong>，我们会在第三节接着谈。</p>
+<h4 id="section-10">6. 再回到那个聊天窗口</h4><p>现在回头看，刚才那篇《哲学概论》期中论文就没那么神秘了。</p>
+<p>你与 AI 讨论自由意志时，<strong>Model</strong> 主要负责理解问题、组织信息和生成回答；需要检索网页、读取文件或制作表格时，<strong>Tool</strong> 开始参与；协调模型与工具、管理上下文和权限的，是 <strong>Harness</strong> 所承担的一类机制；当系统能够围绕目标自主安排多步操作时，我们开始接触 <strong>Agent</strong> 式的工作方式；经过检验的操作方法，还可以沉淀成可复用的 <strong>Skill</strong>。</p>
+<p>它们也并不是一套必须严格套用的技术层级。<strong class="concept">Agent</strong> 往往依赖某种 <strong class="concept">Harness</strong> 运行，但 <strong class="concept">Harness</strong> 不一定只服务于高度自主的 <strong class="concept">Agent</strong>；<strong class="concept">Skill</strong> 也可能被不同类型的应用加载。</p>
+<p>对于人文社科学生，理解这些概念并不是为了成为 AI 工程师，而是为了看懂自己正在使用什么：<strong>模型提供基础能力，工具与运行环境影响它能实际做什么，而人的目标与授权则影响这些能力被用在何处。</strong></p>
+<p>认识这些能力之后，更切身的问题是：人应该怎样与 AI 协作？</p>
+<hr>
+<h3 id="section-11">二、与 AI 协作：表达、分工与主导权</h3><p>许多 AI 入门教程强调“如何写好 Prompt”：说明身份、提供背景、指定格式，或套用模板。这些技巧有用，但不足以应对真正复杂的协作。实际生活中，我们不总是提前知道自己需要什么。一篇文章的结构可能随着阅读而调整，一项研究的问题也可能在讨论中逐渐清晰。<span class="action">与此同时，AI 不只会执行指令，还会主动提出建议、框架和工作计划。</span></p>
+<p>所以，人机协作不能只理解为“我发出命令，它负责执行”。<span class="action">我们需要学会表达自己的想法，判断 AI 的建议是否合适，也需要在较长的工作过程中保持方向感。</span></p>
+<h4 id="section-12">1. 学会表达：你未必需要先想好答案</h4><p>刚开始使用 AI 时，我们容易像使用搜索引擎那样，输入几个关键词：“自由意志论文”“帮我理解康德”“这个理论什么意思”。</p>
+<p>模型当然能够作答，但它很难知道你究竟想让它做什么：是推荐选题、解释哲学史，还是检查某个具体论证？你是第一次接触哲学的大一新生，还是已经读过原著、希望继续深入？</p>
+<p>因此，一种很有效的习惯，是尽量交代自己的背景、任务和期待。例如：</p>
+<blockquote>
+<p>我正在准备《哲学概论》期中小论文，目前对自由意志有一点兴趣，但还没有形成明确选题。我是刚接触哲学的本科生，希望先了解适合入门者讨论的具体问题，以及它们各自的争论焦点。暂时不要帮我写论文。</p>
+</blockquote>
+<p>这段话并没有什么特殊语法。你只是向它说明了自己身在何处、已经知道什么、希望获得怎样的帮助。</p>
+<p>但大学里很常见的另一种情况，是我们自己也没想清楚问题。读完一篇文章，你觉得作者的解释似乎哪里不对，却说不出究竟是什么。与其为了凑出一个“完美 Prompt”而苦恼，不妨直接说：</p>
+<blockquote>
+<p>我现在的想法还很模糊。先不要急着给结论，能不能通过提问，帮我弄清楚自己到底困惑在哪里？</p>
+</blockquote>
+<p>你可能会想起维特根斯坦关于语言界限的讨论。语言表达不等同于思维能力，更不意味着几个<strong class="concept">提示词</strong>技巧就能带来深刻思想，但语言确实是我们组织问题、与他人交流的重要媒介。有时，你发现自己无法向 AI 说明究竟想做什么，恰恰是在提醒自己：对这个问题的认识还不够清楚。</p>
+<p><strong>学会表达，不意味着提前拥有完整答案，也包括敢于把不成熟的想法带入对话。</strong></p>
+<h4 id="section-13">2. 从问答到对话：让思考继续发生</h4><p>如果只是提出一个问题、接收一份回答、觉得差不多就复制下来，我们实际上把大模型用成了一个会写长答案的搜索框。</p>
+<p>很多有价值的讨论，反而发生在第二轮、第三轮之后。</p>
+<p>例如，你让 AI 介绍决定论与自由意志的争论。读完解释，你又问：“如果人的行为总是受到过去经验、社会环境和生理条件影响，自由选择究竟意味着什么？”</p>
+<p>它介绍了相容论的思路，你可以进一步追问：“这些立场对‘自由’的定义是否相同？有没有可能看似互相反对，实际上在回答不同的问题？”</p>
+<p>随着对话深入，你开始从获取知识转向检查概念、分析论证。你还可以要求 AI 尝试站在相反立场提出最有力的反对意见。</p>
+<p>对于人文社科学生，这种交互方式尤其重要。许多问题无法靠一轮问答解决。我们需要反复辨析概念，比较不同观点，确认自己究竟同意或反对什么。</p>
+<p>不过，“让 AI 批评我”也可能流于形式。它列出三个问题，并不代表这三个问题真能击中论证的要害。我们仍然需要判断反对意见有没有针对性，能否找到相应依据，以及自己是否真正理解了争论的焦点。</p>
+<p><strong>好的对话未必每轮都让我们更接近一个现成答案，但应该让问题变得更清楚。</strong></p>
+<h4 id="section-14">3. AI 给出了一套漂亮方案，我们还会继续追问吗？</h4><p>现在，我想讨论一种不太显眼的风险。</p>
+<p>假设你对某个社会现象只有模糊的研究兴趣，于是把想法告诉 AI。它很快给出一份结构完整的方案：研究背景、理论框架、核心概念、研究假设，甚至连方法和章节安排都准备好了。</p>
+<p>你觉得不错，就让它继续完善。几轮下来，研究计划已经有模有样。但如果回头看看最初的兴趣，可能会发现，你真正想理解的现象在这套框架中反而成了次要内容。</p>
+<p>这有点像一种认知上的路径依赖：当 AI 提供了一条铺设得很顺畅的道路，我们可能会不知不觉地沿着它继续前进，减少对其他方向的探索。尤其当自己还没想清楚问题时，一套整齐的框架很容易让人产生“研究正在顺利推进”的感觉。</p>
+<p><span class="action">当然，AI 的意外建议也可能打开一条真正有价值的新路。</span>我们并不需要固守最初的想法。关键在于，<strong>能否意识到自己的方向发生了变化，理解为什么接受这一建议，以及它是否有助于更好地理解自己关心的问题。</strong></p>
+<p>因此，在较长的探索中，不妨偶尔回到原始材料和最初的兴趣，问问自己：现在讨论的还是我想追究的现象吗？这套分类或框架为什么适合它？有没有被遗漏的事实或其他可能？</p>
+<p>这一点暂时说到这里。更复杂的解释性探索，将在第二篇讨论质性研究时展开。</p>
+<h4 id="section-15">4. 怎样分工：根据任务，而不是根据对 AI 的态度</h4><p>当我们开始让 AI 参与实际工作，一个常见的问题是：究竟应该把多少事情交给它？</p>
+<p>我更倾向于从任务的性质来判断，而不是先给出一条僵硬的边界。</p>
+<p>如果你已经知道一张图表要表达什么，完全可以请 AI 调整字体、颜色、标注与排版，没有必要花几个小时亲自重复操作。但如果连图表要说明的问题都还没想清楚，先让 AI 生成十张精美的图，未必能让研究真正前进一步。</p>
+<p>具体来说，我们可以看三个方面。</p>
+<p>首先，<strong>任务是否清楚</strong>。例如，按照确定规范统一文档格式，通常比从一组历史材料中发现新的研究问题更容易描述与委托。</p>
+<p>其次，<strong>结果是否容易核验</strong>。统计程序的输出可以回到原始数据和代码检查；一段田野材料的解释则可能需要更多语境、比较与证据，才能判断是否成立。</p>
+<p>最后，<strong>出错的代价有多大</strong>。调整一份测试文档与删除重要研究资料，绝不能采用相同的权限设置。涉及隐私、敏感材料和不可逆操作时，更应谨慎。</p>
+<p>因此，对于目标明确、低风险且易检验的任务，我们可以提高 AI 的自主性；对于具有探索性、需要复杂判断或后果较重的任务，则应保留更多人工参与。</p>
+<p>这并不是在规定哪些事情只能由人完成。随着技术变化，人机分工的具体边界也可能变化。真正值得掌握的是：<strong>根据目标、可验证性和风险，灵活安排 AI 参与到什么程度。</strong></p>
+<h4 id="section-16">5. 主导权不只是审批操作，也包括把握问题</h4><p>对于较明确的执行性任务，一种稳妥的协作方式是：先说明目标与边界，让 AI 提出计划；确认关键步骤之后执行；在必要时检查中间成果；最后验收结果、保留可恢复的文件版本。</p>
+<p>例如，让 AI 清理一份问卷数据时，你至少需要知道它如何处理缺失值、哪些记录被排除、变量经过了怎样的转换。程序运行成功，不意味着研究设计和结论就没有问题。</p>
+<p>但并不是所有任务都适合被写成一份固定的执行清单。研究问题尚不明确时，我们可能需要反复对话、阅读材料，甚至随时调整最初的方向。此时，最重要的不是审批每一步，而是持续理解为什么要这样做，以及现有证据是否支持当前判断。</p>
+<p>我觉得可以把人在协作中的主导权分成两个方面。</p>
+<p><strong>一方面是执行层面的控制</strong>：明确权限、管理文件、查看中间结果，并在必要时暂停、纠错或恢复。</p>
+<p><strong>另一方面是认知层面的主导</strong>：保持对问题本身的关注，判断 AI 提出的观点和方案是否值得采纳，也有能力拒绝那些看起来完整、实际上偏离了目标的建议。</p>
+<p>这两种能力彼此联系，但不能混为一谈。一个人可能严格审批了 <strong class="concept">Agent</strong> 的每一步操作，却从未追问这项任务是否值得做；也可能在讨论中拥有清楚的问题意识，却因为没有检查权限，让系统误改了重要文件。</p>
+<p>因此，所谓驾驭 AI，既意味着组织它的行动，也意味着能够审视它正在帮助我们完成的究竟是什么。</p>
+<h4 id="section-17">6. 不必事事亲力亲为，也不要轻易交出判断</h4><p>说到这里，我还想澄清一种可能的误解。</p>
+<p>强调人的主导权，并不意味着只有自己亲手完成的劳动才有价值。搜索引擎、统计软件、文献管理工具早已扩展了我们的研究能力；AI 也可以如此，而且能够承担的任务更多。</p>
+<p>如果 AI 帮助你读懂一篇此前难以理解的英文文章，最后你已经能够独立讨论其中的观点，那么这显然是有意义的能力拓展。如果它帮你完成重复的数据整理，让你有更多时间检查研究设计，同样值得欢迎。</p>
+<p>需要关注的是，你是否理解自己正在做的事情，能否识别结果的质量，以及是否愿意为最终采用的判断负责。对于课程论文，老师允许 AI 辅助也不等于允许任何形式的代写或虚构引文；对于含有个人信息的访谈录音与调查数据，更不能为了方便就随意上传到不合适的平台。</p>
+<p><span class="action">我们可以让 AI 做很多工作，也可以允许它的建议改变自己的思考；但应该尽可能知道这种改变是怎样发生的，并在关键处作出自己的判断。</span></p>
+<p><strong>使用 AI 的能力，不只是让它更准确地执行要求，也包括面对它提出的各种方案时，能够选择、修改乃至拒绝。</strong></p>
+<p>而当 AI 能越来越容易地生成完整、漂亮的成果，另一个问题就显得更加重要：我们究竟凭什么判断，什么才是真正好的作品？</p>
+<hr>
+<h3 id="section-18">三、从“会用”到“善用”：Taste、Skill 与 AI Slop</h3><p>随着生成式 AI 的普及，我们似乎进入了一个内容越来越容易生产的时代。</p>
+<p>写活动策划？几分钟就能拿到一套方案。做课堂展示？AI 可以帮忙生成排版精美的 PPT。写课程论文？只要给出题目，它甚至能迅速生成几千字看起来颇有学术味道的文字。</p>
+<p>这些能力确实令人兴奋。但当我们逐渐习惯这样的工作方式，一个新问题也随之出现：<strong>当生成内容的成本越来越低，我们究竟凭什么判断一份成果是好是坏？</strong></p>
+<p>这就是我想谈的 <strong class="concept">Taste</strong>。</p>
+<h4 id="section-19">1. 什么是 Taste？</h4><p><strong class="concept">Taste</strong> 通常被翻译为“品味”或“鉴赏力”。日常生活中，我们会用它谈论一个人的审美偏好，例如设计品味、文学品味或音乐品味。在这里，我想稍微扩展它的含义。</p>
+<p>我们可以将 <strong class="concept">Taste</strong> 理解为一种经过知识、经验与实践逐渐形成的判断能力：它让我们能够分辨不同成果的质量，理解一份优秀作品为什么优秀，并且在多种可能的方案中作出恰当的选择。</p>
+<p>这有些抽象，不妨回到《哲学概论》的期中论文。假如你让 AI 写一段关于自由意志的论文开头，它可能生成：</p>
+<blockquote>
+<p>自古以来，自由意志问题始终是哲学领域的重要议题。随着人类思想的不断发展，哲学家们从不同角度展开了深入讨论，这些争论不仅具有重要的理论意义，也为我们理解现代社会中的个体行为提供了深刻启示。</p>
+</blockquote>
+<p>这段话没有明显语法错误，看起来也很像学术文章，但仔细想想，它究竟表达了什么？把“自由意志”换成“正义”“知识”或“幸福”，这段话似乎仍然成立。它没有真正提出一个需要讨论的问题。</p>
+<p>相比之下，我们也许可以这样开始：</p>
+<blockquote>
+<p>假如一个人的所有选择都受到此前经验、环境和心理状态的影响，那么我们还有什么理由认为他应当为自己的行为承担道德责任？</p>
+</blockquote>
+<p>第二种开头至少提出了一组具体的张力：因果决定与道德责任。接下来，作者便可以围绕相容论及其反对者的论证展开讨论，而不必先用大段套话强调“这一问题很重要”。</p>
+<p>我们为什么会觉得第二段更好？这里其实涉及几个不同层次的判断。</p>
+<p><strong>首先是事实与规范。</strong> 一篇文章不能编造文献、歪曲他人观点，也应当遵守基本的引用规则。</p>
+<p><strong>其次是方法与论证。</strong> 它有没有清楚的问题？概念是否恰当？材料和理由能否支持结论？</p>
+<p><strong>再往前一步，才更接近这里讨论的 Taste。</strong> 即使几种方案都满足基本规范，也可能存在明显的质量差异：哪一种表达更贴切，哪一个切入点更能触及重要矛盾，哪一种组织方式能够让读者真正理解复杂的问题？</p>
+<p>这几个层次彼此联系，但不能完全混为一谈。一张统计图的数据错了，首先是事实或方法上的问题；两张图都准确呈现了信息，我们才进一步讨论哪一种更适合研究意图、更清晰、更有表现力。</p>
+<p>因此，<strong class="concept">Taste</strong> 不是“只要看起来高级就好”，也不等于一般意义上的专业知识。它需要知识、规则和经验的支撑，却还包含一种很难完全写成标准答案的选择能力。不同学科、任务与作者的目的，也会影响我们对于好作品的判断。</p>
+<p><strong>好的 Taste，让我们不满足于“看起来不错”，而愿意继续追问“它为什么好，又能怎样更好”。</strong></p>
+<h4 id="section-20">2. “抽卡式”使用：为什么这一次比上一次好？</h4><p>你可能有过这样的经历。</p>
+<p>想做一张课堂展示的封面，于是让 AI 生成图片。第一版不满意，就让它“再高级一点”；第二版似乎不错，但你觉得颜色不协调，便要求“更有学术感”；来回几轮，终于抽到一张看起来顺眼的结果。</p>
+<p>这种不断生成、筛选、重新尝试的过程，在一些 AI 社区里被形象地称为“抽卡”。</p>
+<p>我并不认为抽卡本身有什么问题。创意探索时，我们未必一开始就知道自己究竟想要什么。让 AI 提供不同方向，可能帮助我们发现原本没考虑过的可能性。</p>
+<p>但如果整个过程只剩下“生成—选择—再生成”，我们容易忽略一个重要的问题：<strong>为什么这一版比上一版更好？</strong></p>
+<p>例如，你觉得某张 PPT 页面明显优于其他版本，是因为删掉了多余的装饰，文字与图形的层次更清晰，还是因为它真正突出了研究想表达的信息？</p>
+<p>当你能把这些差异说清楚，下一次提出要求时就不必完全碰运气。你开始把一次偶然的选择，变成可以复用的经验。</p>
+<p>这也适用于文字和学术研究。如果觉得某段话“AI 味很重”，可以继续判断：是开头套话太多、句式不断重复，还是根本没有具体事实和真正的论证？如果某个选题不够有意思，是因为缺乏经验基础、已经被充分讨论，还是始终没有说清问题出在哪里？</p>
+<p>与其反复对 AI 说“这版不好，再改”，不如逐渐学会解释它哪里不好，以及你想改到什么程度。</p>
+<p>当然，我们不可能每次都准确说出自己的标准。有时恰恰是在比较多个结果的过程中，才发现自己原来在意什么。重要的是，别让这种尝试永远停留在碰运气的层面。</p>
+<h4 id="section-21">3. Skill 能沉淀经验，却不能代替经验</h4><p>理解了 <strong class="concept">Taste</strong>，再回头看第一节介绍过的 <strong class="concept">Skill</strong>，就会发现一个值得警惕的现象：对现成<strong class="concept">工作流</strong>程的迷信。</p>
+<p>在一些 AI 社区，我们经常看到“最强论文写作 <strong class="concept">Skill</strong>”“一键生成顶级学术 PPT”之类的说法。好像只要安装了某套技能，就能够直接获得一个领域的专业水准。</p>
+<p><strong class="concept">Skill</strong> 确实很有价值。它可以把稳定的操作步骤、约束条件、工具使用方法和参考资料组织起来，减少重复说明。但它能否产生好的结果，首先取决于所封装的经验是否可靠、是否适用于当前任务。</p>
+<p>假如某套 <strong class="concept">Skill</strong> 要求 AI 将论文统一写成“背景—问题—原因—对策”的结构。对于某些政策报告，这种安排可能很方便；但如果你正在写一篇围绕概念和论证展开的哲学论文，或者试图从复杂历史材料中解释一项制度的运行，它就未必适用。</p>
+<p>甚至有时，<strong class="concept">Skill</strong> 执行得越严格，越可能让一套不合适的框架压过材料本身。原本值得研究的意外和矛盾，可能在整齐的分类中消失。</p>
+<p>这也解释了为什么我不赞同将 <strong class="concept">Skill</strong> 理解为可以直接安装的“专业能力”。它提供的是一套可复用的方法，至于方法本身好不好，是否需要根据任务调整，仍然需要使用者判断。</p>
+<p>借鉴开源社区的 <strong class="concept">Skill</strong>，可以学习别人怎样拆解问题、检查质量、组织文件。但使用之前，应先了解设计理由、适用边界，以及附带脚本所需的权限。</p>
+<p>如果你自己已经反复做过某项工作，并逐渐形成可靠的方法，也可以将其整理成 <strong class="concept">Skill</strong> 分享出去。这时，<strong class="concept">Skill</strong> 才真正成为经验的沉淀。</p>
+<p><strong>Skill 能够复用方法，却不能保证方法在新的情境下始终正确。</strong> 对初学者而言，比收集几十个 <strong class="concept">Skill</strong> 更重要的，是先亲自完成一些真实任务，知道好流程究竟从何而来。</p>
+<h4 id="section-22">4. 从批量生成到 AI Slop</h4><p>说到这里，我们就可以讨论 <strong class="concept">AI Slop</strong> 了。</p>
+<p>Slop 原本有“泔水”“粗劣东西”等含义。近年来，人们用它来形容那些大量生成、缺乏认真筛选与质量控制的低质量 AI 内容。它可能是一段充满套话的文章、一张细节混乱的图片、一条没有信息量的视频，也可能是一份排版精美、内容却经不起推敲的研究报告。</p>
+<p>需要强调，<strong>AI Slop 不等于所有使用 AI 制作的内容。</strong> 一篇经过认真研究、核对与修改的文章，即使大量使用 AI 辅助，也完全可能很出色；反过来，完全手工写出的东西也可能充斥空话和错误。</p>
+<p>真正值得警惕的，是内容生产变得越来越方便之后，我们是否也在不知不觉地降低了对质量的要求。</p>
+<p>这与前面谈到的抽卡和 <strong class="concept">Skill</strong> 迷信有内在联系。如果只通过反复生成来寻找满意的结果，却不形成判断标准，那么产出越来越多，理解未必随之加深。如果把未经检验的现成流程一遍遍套到新的任务中，原有的问题还可能被成倍复制。</p>
+<p>在人文社科领域，AI 很擅长生成“多维分析”“复杂互动”“深层机制”等学术化表述，甚至搭配工整的机制图。但继续追问：概念指向什么经验事实？机制从哪些材料中发现？如何排除其他解释？这些漂亮词句可能就经不起推敲。</p>
+<p>还有一种危险，是我们越来越习惯通过成果的外观评价工作：文章是否足够长、框架是否足够完整、页面是否足够精美。但这些外观特征，与知识贡献并没有必然联系。</p>
+<p><strong>不要让 AI 生成内容的速度，决定我们接受内容的标准。</strong></p>
+<p>看到一篇文章，可以问它究竟提出了什么值得讨论的问题；看到一张图表，检查它是否准确、是否帮助我们理解数据；看到一套理论框架，回到原始材料，看看它有没有足够的解释力。</p>
+<p>这是对作品负责，也是在保护我们自己的判断能力。</p>
+<h4 id="section-23">5. Taste 需要在实践中慢慢形成</h4><p>那么，究竟怎样培养 <strong class="concept">Taste</strong>？</p>
+<p>我想，这个问题并没有一套能够快速奏效的技术答案。</p>
+<p>首先，需要接触优秀作品。读好的学术论文，观察作者怎样发现问题、选择方法、组织论证；面对设计和写作作品，也试着说清楚它们好在哪里。</p>
+<p>其次，通过比较形成判断。同一个研究问题，看看不同学者如何界定概念、安排论证；同一份展示材料，比较几种方案分别强调了什么、舍弃了什么。当 AI 给出多个版本时，尽量别只选最顺眼的一个，而要逐渐说得出自己的理由。</p>
+<p>最后，<strong class="concept">Taste</strong> 需要通过实际创作与修改逐渐形成。你可以让 AI 批评自己的文章，也可以自己修改 AI 生成的文字；它提出几个框架，你可以逐个追问它们与材料的关系。AI 能提供低成本的试错和反馈，但它的评价也不必然正确，更不能取代老师、同学与真实读者的意见。</p>
+<p>这意味着，我们既可以借助 AI 加速实践，也需要通过专业学习、与他人的交流和一次次修改校准自己的标准。</p>
+<p>久而久之，我们或许能够更清楚地识别何为好的表达、好的研究问题和好的工作方法，也更容易看出某些形式完美的成果究竟缺少了什么。</p>
+<p>不过，判断好作品只是问题的一面。对于正在大学里学习的我们，还有另一个更切身的问题：<strong>即使 AI 已经帮助我们完成了一份很好的作业，我们自己是否也真的学会了？</strong></p>
+<hr>
+<h3 id="section-24">四、AI 原生一代：重新理解学习</h3><p>当 AI 已经能够解释概念、阅读材料、完成分析和写作，我们为什么还需要花时间学习这些东西？如果一项过去要忙一整周的作业，今天几小时就能完成，难道不是好事吗？</p>
+<p>当然是好事。但大学里有许多任务同时具有两种目的：一方面，我们要完成某个成果；另一方面，<strong>完成它的过程本身，就是训练能力的过程。</strong></p>
+<p>当 AI 开始参与其中，这两件事便不再总是同步发生。</p>
+<h4 id="section-25">1. 完成任务，不等于获得能力</h4><p>还是《哲学概论》的期中论文。</p>
+<p>假设老师允许合理使用 AI。你让模型生成一份关于自由意志与道德责任的论文初稿，又请它反复修改，最后得到一篇结构完整、语言流畅，甚至包含一些有意思观点的文章。</p>
+<p>如果只看最终文件，这份作业可能相当不错。</p>
+<p>但假设老师接着问你：“为什么这里选择讨论相容论？”“文章中最重要的反对意见是什么？”“如果决定论成立，为什么仍然可能谈论道德责任？”你能不能离开 AI，说明自己究竟赞成什么、为什么？</p>
+<p>如果不能，完成了一篇好看的论文，并不意味着我们已经理解了其中的哲学问题。</p>
+<p>在过去，完成课程论文通常要求学生经历选题、阅读、思考、组织论证和写作。虽然也有敷衍和照搬的可能，但任务本身多少会促使人经历这些认知活动。现在，AI 可以接手其中相当多的环节，因此<strong>任务完成与能力形成之间，可能出现明显的距离</strong>。</p>
+<p>这不是说必须亲自完成所有操作才算学习。假如任务只是按照现成记录生成一份会议纪要，使用 AI 节省时间完全合理。但如果写课程论文的目的正是训练阅读原著、辨析概念和构建论证，那么直接跳过这些环节，就可能错过原本最有价值的学习过程。</p>
+<p>所以，在决定让 AI 帮你做什么之前，不妨先问自己：眼下这件事，主要是为了得到结果，还是为了练习一种能力？许多作业兼具这两个目标，我们需要在具体情境中权衡。</p>
+<h4 id="section-26">2. 有些困难，值得自己经历</h4><p>这又引出一个有点反直觉的问题：当 AI 可以替我们迅速解决困难，为什么还要保留某些学习中的困难？</p>
+<p>比如，你第一次阅读康德的一段原著。概念陌生，句式复杂，读了好几遍还是不太理解。把原文交给 AI，它很快就能给出一份通俗的解释。</p>
+<p>这种帮助当然有价值。但如果每遇到读不懂的地方，我们都立刻跳过自己的尝试，直接接受 AI 的转述，那么训练复杂文本阅读的机会也可能随之减少。</p>
+<p>教育心理学中有一个相关概念，叫作<a href="https://bjorklab.psych.ucla.edu/research/">“合意困难”（Desirable Difficulties）</a>。某些让学习暂时变得费力的活动，在适当条件下，反而可能帮助知识的保持、理解和迁移。当然，不是所有困难都有教育价值：如果缺少必要背景、长期无法理解材料，继续独自摸索也未必有效。</p>
+<p>关键在于：<strong>这项困难究竟是不是我们希望训练的能力的一部分？</strong></p>
+<p>学习哲学论证时，亲自尝试识别前提与结论，值得保留；为了完成这项训练，手动调整几十处文档格式就没什么必要。<span class="action">学习统计学时，理解模型的假设和结果含义可能比记住某一软件的操作命令更重要；但如果你正在学习编程，自己阅读、运行和调试代码，恰恰就是需要练习的内容。</span></p>
+<p>我很喜欢这样一种思路：让 AI 帮我们克服妨碍学习的困难，同时尽量保留那些有助于学习的困难。</p>
+<h4 id="section-27">3. 把 AI 当作逐渐撤去的学习支架</h4><p>实际学习时，可以借用教育学中的<a href="https://doi.org/10.1111/j.1469-7610.1976.tb00381.x">“支架”（Scaffolding）</a>思路。当学习者暂时无法独立完成某项任务时，先提供必要的支持；随着能力提高，再逐渐减少帮助，让学习者承担更多工作。</p>
+<p>AI 也可以发挥类似作用。</p>
+<p>例如，阅读一篇关于自由意志的论文时，你先自己尝试划分论证结构，记下看不懂的段落；接着让 AI 解释关键概念，检查你对前提和结论的理解；随后回到原文，再试一次；最后，关掉聊天窗口，用自己的语言向同学讲清楚作者究竟如何论证。</p>
+<p>如果一离开 AI 就完全解释不清楚，可能意味着你只是觉得它的回答“很有道理”，还没有真正将理解转化为自己的能力。</p>
+<p>同样，学习统计学时，可以先让 AI 解释分析思路，再尝试自己解读结果；练习写作时，可以让 AI 指出论证问题，但试着亲自改写；学外语时，可以让它充当对话伙伴，却也应当尝试独立表达。</p>
+<p>这种方法的核心，并非刻意限制 AI，而是根据学习目标安排它的支持程度。当我们正在练习一种能力，可以适当减少 AI 的代劳；当我们已经掌握了相应方法，进入更复杂的实际任务，就可以反过来增加 AI 的自主性，把精力留给新的挑战。</p>
+<p>AI 参与多少，没有固定的标准答案。它应该随着任务目标、个人基础和能力变化而调整。</p>
+<h4 id="section-28">4. 什么才是真正的“AI 原生”？</h4><p>在数字技术的发展过程中，人们曾用“数字原住民”形容从小生活在互联网环境中的年轻人。如今，大模型进入学习与生活，“AI 原生一代”的说法也开始出现。</p>
+<p>但我并不想按照出生年份为谁贴上“AI 原生”的标签。同龄人的技术接触条件、使用经验可能差异很大；从小使用一种技术，也不意味着天然理解它。</p>
+<p>在这里，我更愿意把“AI 原生”看作一种值得主动培养的能力：能够自然地将 AI 纳入学习与工作，理解它的能力和限制，并根据不同目标调整人机之间的分工。</p>
+<p>它意味着既敢于使用新技术，也有能力判断何时不该直接接受现成答案；既愿意借助工具突破过去的门槛，也不会把“AI 帮我做到了”误认为“我自己已经学会了”。</p>
+<p>对人文社科学生而言，这可能打开许多新的可能性：历史学学生有机会整理规模更大的档案线索，社会学学生可以在学习方法的过程中探索新的数据分析方式，哲学学生也能利用 AI 接触更多理论立场、不断检验自己的论证。</p>
+<p>我们仍然需要认真阅读、学习方法、走进田野，与真实的人和社会打交道。但在 AI 的帮助下，可以重新安排时间与精力，把更多注意力投入真正值得探索的问题。</p>
+<p>成为“AI 原生”的关键不在于掌握某一款工具，而在于持续学习，并在实践中发展自己的能力。</p>
+<p>理解了模型与运行环境，也讨论了协作、判断与学习，接下来就可以把这些认识带入文献、数据和田野材料构成的真实研究场景。</p>
+<h2 id="section-29">第二篇 · 法：重新组织我们的知识生产</h2><p>从文献阅读、社会调查、统计分析，到理解历史材料和撰写论文，大学阶段的专业学习要求我们使用不同的方法，也遵循各自的证据标准。</p>
+<p>AI 参与其中的方式也不相同：有些工作可以组织成清晰、<strong class="concept">可复现</strong>的计算流程，有些则需要在材料、问题与解释之间不断往返；更多时候，两种工作方式还会相互结合。</p>
+<p>因此，这一篇将从真实的学习与研究场景出发，讨论 AI 如何帮助我们进入已有的学术讨论、开展量化与质性研究，以及通过写作组织自己的论证。最后，再看看当不同方法的技术门槛逐渐降低，人文社科研究还可能出现哪些新的探索空间。</p>
+<hr>
+<h3 id="section-30">五、文献阅读：从理解单篇文章到进入学术对话</h3><p>文献阅读是人文社科大学阶段绕不开的工作。老师布置的材料越来越多，一篇二三十页的论文读上几个小时，也未必说得清作者究竟想解决什么问题。碰上英文文献，困难可能更大。</p>
+<p>现在，我们可以让 AI 解释陌生概念、梳理论证，或比较不同作者的观点。过去需要反复查阅背景资料的疑问，有时几轮对话就能得到初步解答。</p>
+<p>但 AI 在文献阅读中最值得利用的能力，还不止于此。</p>
+<p>当我们开始阅读越来越多的论文，真正困难的事情往往不再是理解某一篇文章的主要观点，而是弄清楚：这些研究究竟在讨论什么问题？它们为什么会产生分歧？后来的学者又怎样回应此前的研究？</p>
+<p>这也意味着，我们需要逐渐从理解单篇文献，走向理解文献之间持续展开的学术对话。</p>
+<h4 id="section-31">1. 在阅读之前：让 AI 帮助我们找到入口</h4><p>假设你正在准备《哲学概论》的期中论文，希望进一步了解自由意志与道德责任之间的关系。</p>
+<p>相关研究实在太多：决定论、相容论、道德责任、行动理论……概念彼此关联，问题却不完全相同。初学者可能连检索关键词都要摸索一段时间。这时，AI 可以成为入口。</p>
+<p>你可以向它介绍自己的兴趣与知识基础，请它帮助梳理相关概念、提供检索关键词，或者介绍这一领域通常讨论哪些重要问题。</p>
+<p>例如，你可以询问：</p>
+<blockquote>
+<p>我是一名刚刚开始学习哲学的本科生，对自由意志与道德责任之间的关系比较感兴趣。请先帮我梳理这一问题涉及哪些基本概念、主要争论，以及适合进一步检索文献的中英文关键词。</p>
+</blockquote>
+<p>通过这样的讨论，我们可以逐渐缩小阅读范围，形成对研究领域的初步认识。</p>
+<p>如果 AI 具备网络检索工具，还可以帮助寻找相关论文、出版机构网页或公开的学术资料。</p>
+<p>但这里必须注意一个问题：<strong>AI 提供了某篇文献的信息，不等于这篇文献真实存在，更不意味着它已经准确阅读了全文。</strong></p>
+<p>尤其是当模型并没有实际检索数据库或获取文献原文时，它所生成的作者、标题、发表年份和期刊信息，都可能存在错误。</p>
+<p>因此，对于准备正式阅读或引用的文献，我们仍然需要通过学校图书馆、学术数据库、出版社网站等可靠渠道进行核验。</p>
+<p>检索词的选择、通过引文关系追踪研究脉络、判断文献的阅读优先级，都属于需要逐渐掌握的学术信息素养。以后值得单独写一篇文章。（如果一个月后还没更，欢迎催更 Orz）</p>
+<p>现在，我们先假设，你已经找到了几篇真正想要阅读的文献。</p>
+<h4 id="section-32">2. 进入一篇论文：从获得摘要到理解论证</h4><p>打开一篇二十多页的英文哲学论文，陌生概念、复杂句式和密集的参考文献难免让人头疼。最直接的办法，是上传 PDF，然后说：</p>
+<p>“帮我总结一下这篇文章。”</p>
+<p>几秒钟后，你就得到了一份结构清晰的摘要，里面列出了文章的主要观点、研究方法和基本结论。</p>
+<p>这种方式很方便，但如果我们始终满足于摘要，可能会错过学术阅读中真正有价值的部分。</p>
+<p>一篇学术论文通常包含着连续的论证过程。</p>
+<p>作者为什么要提出这个问题？他试图回应谁的观点？为了支持自己的判断，采用了哪些前提和证据？面对可能的反对意见，他又作出了怎样的回应？</p>
+<p>这些问题有时比最终得到的结论更加重要。</p>
+<p>因此，我更愿意把 AI 当作一位能够随时参与讨论的阅读助手。</p>
+<p>例如，在正式阅读之前，我们可以先请它帮助识别文章的核心问题和整体结构，对全文形成初步认识。</p>
+<p>进入正文之后，遇到难懂的段落，可以让 AI 结合上下文解释概念，或者尝试用更加通俗的语言重述作者的论证。</p>
+<p>如果某个论证仍然不好理解，还可以进一步要求它区分作者的基本前提、推理过程和最终结论。</p>
+<p>例如，假设某篇论文讨论自由意志与决定论的相容性。</p>
+<p>如果 AI 只是把文章概括为“作者认为人具有自由意志”，我们就可能忽略一个更加重要的问题：作者究竟怎样理解自由？他认为自由为什么能够与某种形式的因果决定论相容？</p>
+<p>只有进一步进入论证，我们才能理解这个观点究竟有什么特别之处，以及它与其他哲学立场的分歧在哪里。</p>
+<p>还可以围绕文本继续追问：</p>
+<p>“作者在这里使用的‘自由’，与上一节的含义是否相同？”</p>
+<p>“如果不接受这个前提，后面的结论还能成立吗？”</p>
+<p>“文章是否回应了这一反对意见？如果有，具体在哪一部分？”</p>
+<p>当模型能够读取原文时，我们还可以要求它指出相关段落的位置，方便自己回到文本中检查。</p>
+<p>PDF 的扫描质量、排版、脚注和表格都可能影响 AI 的读取效果。重要概念、引文和论证仍要回到原文核对。</p>
+<p>我认为，比较理想的方式，是让 AI 帮助我们跨越语言与知识背景上的障碍，同时逐渐进入论文真正的论证过程。</p>
+<p>当我们读完一篇文章，最终能够用自己的语言解释作者为什么提出这个问题、怎样展开论证，以及自己的疑问究竟在哪里，这次阅读才真正产生了积累。</p>
+<h4 id="section-33">3. 从单篇阅读走向学术对话</h4><p>随着阅读深入，新的困难出现了：单篇论文似乎都能看懂，放在一起却说不清它们究竟是什么关系。</p>
+<p>例如，几位哲学家都在讨论自由意志，其中一位强调行动的因果条件，另一位则试图从道德责任出发重新理解自由。</p>
+<p>他们可能使用了相似的概念，但关注的问题并不完全相同。</p>
+<p>如果我们只是分别总结几篇论文，再将它们排列在一起，很难真正理解这些讨论为什么构成一场持续的学术争论。</p>
+<p>学术争论有其历史脉络：一位作者回应前人的困难，另一位重新界定问题；也有研究结论相似，却采用完全不同的论证路径。AI 可以帮助我们开展这种跨文献比较。</p>
+<p>例如，当你已经收集了几篇讨论自由意志的论文，可以让 AI 先分别识别它们的研究问题、核心概念、主要论证和反对意见，再尝试比较这些论文之间的联系。</p>
+<p>但我更建议大家进一步追问：</p>
+<p>这几篇文章是否在讨论同一个问题？</p>
+<p>如果研究问题发生了变化，变化体现在哪里？</p>
+<p>某位作者有没有明确回应另一位作者？回应的是哪一项论证？</p>
+<p>后来的研究对原有概念进行了怎样的修改？</p>
+<p>当我们沿着这些问题展开阅读，就有机会逐渐理解一场学术争论形成和发展的过程。</p>
+<p>这里需要注意，<strong>学术脉络并不能仅仅依靠观点上的相似性来重建。</strong></p>
+<p>两篇文章讨论了相同概念，并不意味着后者一定受到了前者影响。</p>
+<p>如果我们希望判断一位学者是否回应了另一项研究，就需要寻找具体的证据，例如明确的引用、对相关论证的讨论，或者其他可靠的文献材料。</p>
+<p>AI 也容易将不同研究归成整齐的流派，掩盖同一学者不同时期的变化，或同一流派内部的关键分歧。这样的分类适合作为阅读线索，却不能直接当作经过证实的学术史。</p>
+<p>真正重要的，是借助这些整理逐渐发现：哪些研究之间确实存在对话，哪些看似相似的观点其实回答了不同的问题，以及哪些争论至今仍然值得继续讨论。</p>
+<h4 id="section-34">4. 让 AI 帮助我们积累自己的阅读与思考</h4><p>当文献越来越多时，还有一项工作很容易被忽略：建立可以持续使用的阅读笔记。</p>
+<p>起初，我们可能只给每篇论文写几条摘要；随着阅读积累，笔记还应帮助自己理解问题、追踪研究线索。</p>
+<p>例如，每读完一篇重要文献，不妨记录作者、题目、研究问题、核心论点、主要证据，以及自己对这篇文章的理解与疑问。</p>
+<p>这些内容不需要每次都写得非常完整，也不必拘泥于固定模板。</p>
+<p>重要的是，笔记能够帮助未来的自己重新理解这篇文章。</p>
+<p>AI 可以参与其中。</p>
+<p>当你已经积累了一些阅读笔记，可以要求它帮助整理其中涉及的概念、识别反复出现的问题，或者根据自己的研究兴趣查找此前可能忽略的材料。</p>
+<p>当你开始准备一篇新的课程论文，也可以让它结合已有笔记，帮助回顾自己曾经读过哪些相关文献，以及当时留下了什么疑问。</p>
+<p>更进一步，如果你已经形成了一个比较明确的研究问题，还可以围绕这个问题组织一份专题文献资料。</p>
+<p>例如，将相关论文、阅读笔记和研究札记保存在一个独立的项目空间中，让具备文件读取能力的 AI 在需要时进行检索、比较和整理。</p>
+<p>这样，AI 就有机会参与一个持续积累的阅读过程，而不只是每次临时总结一篇新文献。</p>
+<p>不过，我认为这里有一个很值得保留的习惯。</p>
+<p><span class="action">在整理文献时，最好能够区分作者在原文中实际表达的观点、AI 对文献作出的概括，以及我们自己形成的理解。</span></p>
+<p>例如，某篇文章的核心结论应当能够追溯到原始文本；而我们认为它与另一项研究存在某种联系，则可能只是一个有待进一步检验的判断。</p>
+<p>如果把这些内容混在一起，时间久了，我们可能反而无法分辨某个观点究竟来自哪里。</p>
+<p><span class="action">因此，一份好的阅读笔记，最好能够保留必要的出处和自己的疑问，而不只是几条看起来完整的结论。</span></p>
+<p>这些疑问也许暂时没有答案，但随着阅读不断深入，它们可能逐渐发展成新的研究兴趣。</p>
+<h4 id="section-35">5. 阅读的意义，在于逐渐进入问题本身</h4><p>从检索、解释概念、梳理论证，到跨文献比较和笔记整理，AI 都能提供帮助。但学术阅读最重要的收获，仍然是理解问题如何被提出与讨论。</p>
+<p>读完几篇关于自由意志的论文，我们当然希望知道不同哲学家分别持有什么观点。</p>
+<p>但更值得期待的是，我们开始理解他们为什么发生分歧，哪些论证真正构成了争论的焦点，以及这些讨论又引出了什么新的问题。</p>
+<p>同样，在阅读政治学、社会学或历史学文献时，我们也需要逐渐学会识别研究者真正关心的现象、使用的证据与方法，以及他们试图对既有知识作出怎样的推进。</p>
+<p>AI 能够帮助我们更快地接触这些研究，并在不同文献之间建立可供检查的联系。</p>
+<p>而当我们逐渐形成自己的问题意识，开始有能力对已有研究提出疑问时，文献阅读也就有了更进一步的意义。</p>
+<p><strong>我们正在从知识的接受者，逐渐成为学术对话的参与者。</strong></p>
+<p>这种能力当然需要长期积累，却也可以从大学阶段的每一次认真阅读开始。</p>
+<p>而当我们不再满足于理解已有研究，开始希望利用自己的数据与材料回答问题时，就需要进一步进入研究方法的领域。</p>
+<p>这也是接下来要讨论的内容：AI 怎样参与量化研究与质性研究，帮助我们开展自己的经验分析。</p>
+<hr>
+<h3 id="section-36">六、量化研究：从代码执行到交互式数据探索</h3><p>对不少人文社科学生来说，量化研究最先遇到的困难可能是技术门槛：统计概念已不容易，实际处理数据还要接触 Excel、SPSS、Stata、R、Python 等工具。即使有研究想法，也可能因不熟悉程序而难以推进。AI 正在改变这种状况。</p>
+<p>今天，我们可以直接向 AI 描述自己希望分析的问题，让它帮助读取数据、编写和执行程序、生成图表，并在发现错误时尝试修正。即使没有熟练掌握某种编程语言，也有机会完成过去需要较高技术门槛的工作。</p>
+<p>而当模型能够理解研究意图并实际操作数据时，变化就不止于代码生成。</p>
+<h4 id="section-37">1. 从操作统计软件，到与 AI 一起探索数据</h4><p>假设你正在上一门社会调查方法课程，想研究大学生对校园公共空间的使用情况。</p>
+<p>你已经收集了几百份问卷，记录了学生所在的校区、年级、公共空间使用频率、满意度以及其他一些相关信息。</p>
+<p>现在，你希望看看不同学生群体在空间使用方面有没有值得注意的差异。</p>
+<p>传统的分析方式，通常要求我们先掌握相关软件的操作，再根据研究需要执行统计命令、制作图表并解释结果。</p>
+<p>而现在，你可以把经过适当处理的数据交给具备代码执行能力的 AI，直接向它描述研究任务：</p>
+<blockquote>
+<p>这是一份关于大学生校园公共空间使用情况的问卷数据。我想了解不同校区、年级的学生在使用频率和满意度上是否存在差异。请先检查数据结构，告诉我有哪些变量、可能存在什么数据质量问题，再提出一份初步分析计划。暂时不要修改原始数据。</p>
+</blockquote>
+<p>AI 可以先读取数据，检查变量类型与缺失情况，并根据你的要求提出分析方案。</p>
+<p>在确认方案后，它可以进一步编写程序、运行统计分析，生成相应的表格与可视化结果。</p>
+<p>这仍然像是在用自然语言操作统计软件。真正有意思的部分，发生在结果出现之后。</p>
+<p>假设 AI 发现，两个校区学生的平均满意度相差不大，但公共空间的使用频率却存在明显差异。</p>
+<p>你可能会产生新的疑问：既然学生对于空间的评价差不多，为什么实际使用情况会不同？</p>
+<p>于是，你可以继续要求 AI，检查不同校区的空间可达性、学生年级构成和使用频率之间是否存在其他关联。</p>
+<p>它可以根据新的问题调整分析程序，制作不同分组的图表，帮助你比较几种可能的解释。</p>
+<p>如果某个结果显得异常，还可以进一步检查数据是否存在录入错误、样本分布不均或者变量编码不一致等情况。</p>
+<p>研究者提出问题，AI 将其转为可执行的分析；程序返回结果，新问题又由此产生。这种探索未必每次都有价值，但它大幅降低了反复计算和可视化的操作成本。</p>
+<p><strong>研究者可以将更多精力放在探索问题和理解结果上，同时让 AI 承担大量具体的技术实现工作。</strong></p>
+<h4 id="section-38">2. AI 的价值，不只是替我们写代码</h4><p>一项量化研究还要经历理解数据结构、确认文件关系、整理变量、执行分析和制作报告等环节，AI 的作用远不止生成 R 或 Python 代码。</p>
+<p>当你刚刚拿到数据时，它可以帮助进行初步的数据检查，说明哪些变量可能具有分析价值，哪些地方存在缺失、重复或编码异常。</p>
+<p>当你提出分析目标时，它可以将自然语言要求转化为具体的计算步骤，编写必要的程序，并实际运行。</p>
+<p>当程序报错时，它可以结合错误信息检查代码，尝试定位问题。</p>
+<p>当你得到初步结果时，它又可以协助比较不同分析方案，提出需要进一步核验的地方。</p>
+<p>如果你希望将整个过程整理为一份报告，它还能够利用已经计算得到的结果，生成统计表格、图表和相关说明。</p>
+<p>结合这些能力，AI 可以持续参与分析。在研究目标和处理规则明确时，具备工具调用能力的 <strong class="concept">Agent</strong> 还可以按授权读取文件、运行程序、输出图表，并尝试修复技术性错误。</p>
+<p>但这也要求我们逐渐学会区分两种不同性质的决策。</p>
+<p>一种是具体的技术执行，例如如何读取文件、调用某个函数、处理程序报错。</p>
+<p>另一种则涉及研究设计和统计判断，例如怎样定义一个变量、为什么选择某种模型，以及是否有足够依据作出某种推断。</p>
+<p>前者通常更容易在明确要求和检查机制下委托 AI；后者即使可以得到 AI 的帮助，也需要结合专业知识与研究目的认真判断。</p>
+<p>程序成功运行，并不能排除数据结构误解、代码错误或方法不适用等问题。</p>
+<p>这也引出了另一个值得讨论的问题：当尝试不同分析方案变得越来越容易，我们究竟应该怎样利用这种便利？</p>
+<h4 id="section-39">3. 从一次性分析到反复探索与检验</h4><p>我认为，AI 对量化研究最有潜力的改变之一，是显著降低了反复探索和检验不同分析方案的操作成本。</p>
+<p>过去，比较多种分析方案往往需要反复改写程序、调整参数；现在可以在同一工作环境中让 AI 修改程序、重新运行并比较结果。</p>
+<p>比如，在校园公共空间的研究中，你最初可能只比较不同校区学生的平均使用频率。</p>
+<p>但随后发现，同一校区内部，不同年级的学生差异也很大。</p>
+<p>你可以要求 AI 进一步检查分组情况，或者通过更合适的可视化方式呈现数据分布。</p>
+<p>如果怀疑某项结果受到少数异常观测值影响，还可以让它比较不同数据处理方案下的分析结果。</p>
+<p>当一项结论在不同合理设定下都比较稳定时，我们通常能够对它形成更充分的认识。</p>
+<p>反过来，如果稍微改变样本范围或变量处理方式，结果就发生明显变化，这本身也是需要认真讨论的发现。</p>
+<p>在量化研究中，我们常常会使用稳健性检验、敏感性分析等方式，评估研究结论对于特定设定和假设的依赖程度。</p>
+<p>AI 可以帮助我们更方便地组织和执行这些检验，也可以协助整理不同结果之间的差异。</p>
+<p>此外，它还能够帮助我们发现原本没有注意到的数据模式。</p>
+<p>例如，在一组跨年度政策数据中，某类政策文本的数量突然增加，或者不同地区的政策结构出现了明显差异。</p>
+<p>AI 可以先协助生成时间趋势、交叉统计和分组图表，再帮助检查这种变化是否可能与数据收录范围、分类标准或样本构成有关。</p>
+<p>如果变化确实存在，我们可以进一步提出解释，再通过新的数据和文献加以检验。</p>
+<p>统计异常可能来自真实社会过程，也可能是处理方式或样本构成造成的。AI 可以帮助提出解释，但不能凭空证明哪种解释成立。</p>
+<p>同样，我们也不能因为 AI 能够快速运行大量模型，就不断调整变量、样本和分析方法，直到得到一个符合预期的显著结果。</p>
+<p>如果大量尝试之后，只报告其中最漂亮的一组结果，就可能产生严重的选择性报告问题。</p>
+<p>因此，我们需要区分原先依据研究设计确定的分析，与看到数据之后开展的探索性分析。</p>
+<p>探索当然有价值，但探索中形成的发现，应当按照相应的证据标准进一步验证。</p>
+<p><strong>AI 让尝试变得更加便宜，却没有降低研究结论所需要满足的证据要求。</strong></p>
+<p>这一点尤其值得记住。</p>
+<h4 id="section-40">4. 让分析过程成为可以检查和复现的工作流</h4><p>当 AI 能够参与越来越多的数据处理和分析工作时，还有一个问题会变得更加重要：我们怎样知道最终的结果究竟是如何得到的？</p>
+<p>假如 AI 生成了漂亮的统计图和分析报告，但你不知道它用了哪些数据、删掉了哪些样本、改动了什么变量，结果就难以检查。</p>
+<p>因此，我认为利用 AI 开展量化研究，最好从一开始就有意识地保留<strong class="concept">可复现</strong>的工作过程。</p>
+<p>例如，保留未经修改的原始数据，明确记录变量定义和处理规则，将数据清理、统计分析和图表生成等步骤保存为能够再次执行的程序。</p>
+<p>如果分析方案发生了变化，也应当记录修改的内容和原因。</p>
+<p>在这样的环境中，AI 不仅可以帮助编写和运行程序，还可以协助维护整个分析流程。</p>
+<p>当你修改某个变量定义时，可以让它检查哪些后续分析受到影响，并重新生成相应的结果。</p>
+<p>当你需要更新数据时，可以在确认数据结构和分析规则仍然适用之后，重复执行已经建立的<strong class="concept">工作流</strong>。</p>
+<p>当研究结果出现问题时，也可以沿着代码和处理记录逐步追溯，而不是重新依靠 AI 猜测此前进行了什么操作。</p>
+<p>对于目标和检查标准明确的分析任务，还可以让 <strong class="concept">Agent</strong> 在授权范围内自主执行，并在关键环节验收。</p>
+<p>当然，<strong class="concept">可复现</strong>并不等于正确。</p>
+<p>如果最初的研究设计就存在缺陷，一套完整的程序也可能稳定地重复得到有问题的结果。</p>
+<p>但至少，它能够让我们更清楚地知道研究是怎样完成的，也使后续检查和修正成为可能。</p>
+<p>相比于得到一份无法追溯来源的分析报告，<strong>能够理解、检查并重新执行整个分析过程，往往具有更加持久的价值。</strong></p>
+<h4 id="section-41">5. 当技术门槛降低，量化研究会发生什么变化？</h4><p>从理解数据、运行程序到检查结果、维护分析流程，AI 已能参与不少环节。更值得期待的，是它带来的研究机会。</p>
+<p>过去，很多人文社科学生可能因为缺少编程经验，或者不熟悉某种数据处理技术，而难以开展自己感兴趣的研究。</p>
+<p>现在，AI 可以帮助他们跨过一部分技术门槛，更早地进入真实的数据分析过程。</p>
+<p>例如，想比较各地政策文本变化的学生，即使尚不熟悉批量处理程序，也可以借助 AI 先整理数据、生成趋势和地区比较图表，并在实践中学习相关方法。</p>
+<p>不过，如果涉及让模型自动判断政策文本的类别或含义，就需要进一步考虑分类标准、人工核验和模型误差等问题。这些编码结果不能仅仅因为由程序批量生成，就被直接当作客观事实。</p>
+<p>面对大规模调查数据，也可以迅速尝试不同的描述和分析方案。量化研究由此获得更加灵活的协作方式：研究者修正问题，AI 将意图转为计算并及时反馈结果。</p>
+<p>当然，这并不意味着研究方法的学习可以被省略。</p>
+<p>我们仍然需要理解测量、抽样、统计推断和研究设计的基本原则，也需要在面对重要结论时，对实际证据进行认真检查。</p>
+<p>但专业知识和技术操作之间的关系，确实正在发生变化。</p>
+<p>如今，可以在研究问题的推动下学习必要方法，同时把重复性的技术操作交给系统。</p>
+<p>我希望大家把这种变化理解为一种新的学习与研究机会。</p>
+<p><strong>AI 可以让我们更容易地开展计算，但研究者仍然需要知道什么值得计算，为什么采用这种计算，以及计算结果究竟说明了什么。</strong></p>
+<p>当我们逐渐形成这种能力，就可以让技术真正服务于研究，而不只是追求运行更多模型、生成更多图表。</p>
+<p>而在另一类人文社科研究中，我们面对的任务可能更加开放：研究问题本身还没有完全确定，材料的意义需要在具体情境中反复理解，解释也可能随着新的发现不断变化。</p>
+<p>这就涉及下一节要讨论的质性研究。</p>
+<p>在这里，AI 的价值又会呈现出另一种有意思的面貌。</p>
+<hr>
+<h3 id="section-42">七、质性研究：让 AI 成为思想的助产士</h3><p>如果说量化研究中，AI 的一项突出优势是帮助我们组织和执行<strong class="concept">可复现</strong>的分析流程，那么在质性研究中，它还可能发挥另一种非常有意思的作用。</p>
+<p>它可以成为一位持续与你讨论、提出疑问、比较不同解释的思考伙伴。</p>
+<p>质性研究面对的材料和方法很丰富：走进社区访谈，阅读历史档案，分析政策文本、新闻报道或其他社会文化材料，都可能帮助我们理解行动、制度与意义的形成。</p>
+<p>在这些任务中，AI 同样可以帮助我们整理文件、转写录音、检索材料、辅助编码和比较文本。</p>
+<p>但我认为，质性研究中更值得探索的一个方向，是让 AI 参与研究者对问题的理解与解释过程。</p>
+<p>这里，我想借用一个来自哲学的概念：<strong>精神助产术（Maieutics）</strong>。</p>
+<h4 id="section-43">1. 为什么质性研究需要不同的协作方式？</h4><p>我们不妨先从一个具体的研究情境开始。</p>
+<p>假设你正在开展一项关于基层减负的访谈研究。</p>
+<p>在正式进入田野之前，你可能已经阅读了一些政策文件和相关研究，知道这项改革旨在减少基层不必要的工作任务，改善工作人员的工作状态。</p>
+<p>但在访谈中，你发现一个有些出乎意料的现象。</p>
+<p>部分基层工作人员认为，改革确实减少了某些报表和考核要求，但他们并没有明显感觉到工作变得轻松。</p>
+<p>甚至有受访者表示，自己反而比以前更忙了。</p>
+<p>这就产生了一个值得进一步研究的问题：</p>
+<p><strong>为什么一项旨在减轻工作负担的改革，可能并没有带来预期中的减负体验？</strong></p>
+<p>对于这个问题，我们当然可以让 AI 帮助整理访谈资料，归纳受访者提到的工作变化。</p>
+<p>但如果只要求它“总结影响基层减负效果的主要因素”，很快就可能得到“政策执行不到位、考核机制不完善、基层资源不足”等看似合理的解释。它们是否真能解释观察到的现象，还需要研究。</p>
+<p>更重要的是，这种过早形成的分类，可能让我们忽略材料中更加特殊的部分。</p>
+<p>也许受访者所说的“负担”，与我们原先理解的任务数量并不是同一个概念。</p>
+<p>也许改革确实减少了某些正式任务，却改变了工作在不同部门和岗位之间的分配方式。</p>
+<p>甚至可能出现这样的情况：一部分工作人员感受到明显的减负效果，另一部分却需要承担新的协调和解释工作。</p>
+<p>要判断这些可能性，得继续比较案例、阅读材料、追踪工作过程。研究问题也可能随之调整，甚至需要重新界定原先观察到的现象。</p>
+<h4 id="section-44">2. 精神助产术：让 AI 帮助我们澄清问题</h4><p><a href="https://plato.stanford.edu/entries/plato-theaetetus/">“精神助产术”</a>的经典出处是柏拉图《泰阿泰德篇》中苏格拉底关于“助产”的比喻（148e—151d）。</p>
+<p>通过不断提问，苏格拉底试图帮助对话者检查自己原有的看法，发现其中尚未澄清的概念、隐含的前提与可能存在的矛盾。</p>
+<p>这种方法被比作“助产”，正是因为它强调通过对话，帮助人逐渐形成和检验自己的思想。</p>
+<p>当然，现代 AI 并不等同于苏格拉底，也不具备对研究对象的直接经验。我们在这里借用这个概念，主要是为了说明一种富有启发的人机协作方式。</p>
+<p>回到刚才的基层减负研究。</p>
+<p>假设你已经积累了一些访谈材料，发现不同受访者对于改革效果的感受存在明显差异。</p>
+<p>与其直接要求 AI 总结原因，不妨先让它帮助澄清问题。</p>
+<p>例如，你可以告诉它：</p>
+<blockquote>
+<p>我在访谈中发现，部分基层工作人员认为减负改革减少了某些正式任务，但自己的工作负担并没有明显下降。请先不要替我建立理论框架，而是围绕这一现象提出一些值得进一步追问的问题，特别关注不同受访者对于“负担”的理解，以及改革前后具体工作过程的变化。</p>
+</blockquote>
+<p>AI 可能提出一些新的问题。</p>
+<p>例如，受访者所说的负担，究竟指工作时间、任务数量、协调成本，还是责任压力？</p>
+<p>改革减少了哪些具体任务？这些任务是否真的消失了，还是以新的形式继续存在？</p>
+<p>不同岗位的工作人员，是否承担了不同类型的新增工作？</p>
+<p>这些问题未必都具有同样的研究价值，但它们可以帮助我们逐渐意识到，原先那个看起来简单的现象，其实包含多个需要进一步区分的层次。</p>
+<p>更重要的是，我们可以继续与 AI 讨论自己已经形成的判断。</p>
+<p>假设你认为，改革减少了正式考核，却增加了非正式的协调工作。</p>
+<p>你可以要求它进一步追问：</p>
+<p>这一判断目前有哪些材料支持？</p>
+<p>是否存在其他可能的解释？</p>
+<p>哪些受访者的经历与这一解释不一致？</p>
+<p>如果希望进一步检验它，我们还需要了解什么？</p>
+<p>这样一来，AI 就不只是帮助我们整理已有材料，也参与了问题澄清的过程。</p>
+<p>不过，我认为这种使用方式最重要的价值，并不在于 AI 提出了多少问题。</p>
+<p>AI 很容易连续生成几十个追问，但只有那些指向材料矛盾、能够转化为新访谈或证据查找任务的问题，才值得继续推进。</p>
+<h4 id="section-45">3. 从意外现象到解释假设：溯因推理</h4><p>当我们逐渐澄清了问题，下一步便可以尝试提出解释。</p>
+<p>在研究方法中，有一种与此密切相关的推理方式，通常被称为<a href="https://plato.stanford.edu/entries/abduction/">溯因推理（Abduction）</a>。</p>
+<p>这里侧重溯因在<strong>提出解释假设</strong>方面的作用：面对出乎意料的现象，尝试提出能够解释它的假设，再通过进一步研究比较和检验。哲学文献中还常将溯因与“最佳解释推理”相联系，二者在具体讨论中并不总是完全等同。</p>
+<p>提出解释假设还远不是证明；我们仍需寻找证据，并比较其他可能性。</p>
+<p>还是以基层减负为例。</p>
+<p>假设我们发现，改革之后不同岗位工作人员的负担感受存在明显差异。</p>
+<p>这时，可以尝试提出几种解释。</p>
+<p>一种可能性是，改革减少了部分正式任务，但由于旧制度与新要求在过渡阶段并存，短期内反而增加了工作量。</p>
+<p>另一种可能性是，改革改变了任务在不同岗位之间的分配，使部分工作人员获得了减负效果，而另一些人则承担了新的工作。</p>
+<p>还有一种可能性是，改革减少了能够直接统计的任务数量，却没有同步减少协调、解释和责任应对等较难量化的工作。</p>
+<p>解释即使听起来合理，也要有材料支持，才能写入结论。</p>
+<p>例如，如果我们认为改革导致任务重新分配，就需要了解改革前后具体任务由谁承担、怎样流转，以及这种变化是否确实发生。</p>
+<p>如果我们认为非正式协调工作增加，就需要寻找能够说明协调活动变化的访谈、工作记录或其他证据。</p>
+<p>当不同解释都能在一定程度上说明现象时，还需要比较它们各自的证据基础，以及能否解释不同案例之间的差异。</p>
+<p>AI 可以帮助梳理解释逻辑、提出替代假设，并讨论各自需要什么证据。</p>
+<p>例如，你可以要求它把目前的几个解释分别列出来，说明每种解释已经获得哪些材料支持，还缺少哪些信息，以及什么样的发现可能使这一解释受到质疑。</p>
+<p>不过，在这样的任务中，需要特别注意区分三类信息：</p>
+<p>一类是访谈、观察、档案等原始材料中实际出现的内容。</p>
+<p>一类是 AI 根据材料提出的归纳、疑问和可能解释。</p>
+<p>还有一类，是研究者经过比较、检验之后，最终愿意采纳的判断。</p>
+<p>这三类信息不能混为一谈。</p>
+<p>尤其不能因为 AI 提出某种解释时引用了几段访谈文字，就认定它已经构成充分的经验论证。</p>
+<p>我们需要检查相关引文是否准确、语境是否完整，以及材料与结论之间是否真的存在所声称的联系。</p>
+<p>AI 可以拓展解释空间，帮助设计检验；哪种解释最终成立，仍取决于证据。</p>
+<h4 id="section-46">4. 不要急于整理整齐：重视那些无法被解释的材料</h4><p>说到这里，我们还需要讨论质性研究中一种非常常见的困难。</p>
+<p>当我们阅读大量访谈或历史材料时，很自然地希望能够从中归纳出某种规律。</p>
+<p>AI 也非常擅长完成这样的任务。</p>
+<p>你上传几十份访谈文本，它可以迅速提炼出几个主题，再把这些主题组织成一套看起来逻辑完整的解释框架。</p>
+<p>这种能力适合建立索引和辅助编码，却也容易使我们过早将复杂材料归入整齐的类别。</p>
+<p>例如，我们可能将受访者对于基层减负的感受分为“积极评价”“消极评价”和“中性评价”三类。</p>
+<p>这样的分类当然具有一定用途。</p>
+<p>但同一个受访者可能同时认为，某些工作确实减少了，另一些责任却变得更加沉重。</p>
+<p>如果我们只根据整体态度将他归入某一类，就可能忽略这种复杂的体验。</p>
+<p>类似的问题也会出现在历史研究中。</p>
+<p>一份历史档案中的某个表述，可能与当时的制度规范、文书习惯和具体政治关系密切相关。</p>
+<p>即使多个文本使用了相同的词语，它们的实际含义也未必完全相同。</p>
+<p>如果 AI 主要依据文字表面的相似性进行归纳，就可能将原本需要区分的情境混合在一起。</p>
+<p>因此，我认为我们需要有意识地保留那些暂时无法归类、与既有解释不一致的材料。</p>
+<p>例如，在使用 AI 辅助编码之后，可以专门检查哪些访谈片段无法被现有分类充分涵盖。</p>
+<p>当某个案例与主要解释发生冲突时，也可以尝试重新理解它的特殊条件，而不急于把它当作不重要的例外。</p>
+<p>这些看似低效的工作，反而可能让我们从无法解释的经验事实中发现新问题。</p>
+<p>当然，这并不意味着我们应该拒绝一切规范化的编码与分类。</p>
+<p>一套经过认真设计的分类体系，可以帮助研究者有效组织材料、识别差异和开展比较。</p>
+<p>重要的是，我们需要知道分类服务于什么研究目的，也要允许它随着研究的深入接受检验与修改。</p>
+<h4 id="section-47">5. 从局部材料回到整体情境：解释学循环</h4><p>前面讨论的问题，还可以帮助我们理解另一种研究中的重要认识：解释往往需要在局部材料与整体情境之间不断往返。</p>
+<p>这与解释学传统所讨论的<a href="https://plato.stanford.edu/entries/hermeneutics/">解释学循环（Hermeneutic Circle）</a>具有一定联系。</p>
+<p>简单来说，我们对于一段具体材料的理解，会受到对整体语境的认识影响；而新的材料，也可能反过来改变我们对于整体情境的理解。</p>
+<p>例如，当你第一次读到某位基层工作人员认为“改革之后反而更忙”的访谈时，可能会把它理解为政策执行效果不佳。</p>
+<p>但当你进一步了解改革的具体内容、工作任务的变化以及受访者所在岗位的组织关系之后，可能会发现，这种负担感受与某些特定的工作安排有关。</p>
+<p>此时，你对于最初那段访谈的理解，可能已经发生了变化。</p>
+<p>随着更多材料出现，你又可能需要重新审视此前形成的整体解释。</p>
+<p>AI 可以协助反复比较材料、检查解释，并提示尚未证实的背景假设。</p>
+<p>但它并不天然掌握研究对象的完整情境。</p>
+<p>例如，一份访谈记录没有保留受访者的语气、神态和具体交流过程，AI 就无法凭空恢复这些信息。</p>
+<p>它也可能不了解某句话在特定组织关系中的实际含义，或者忽略研究者自身的提问方式如何影响了受访者的表达。</p>
+<p>对于历史档案、政策文本等材料，同样需要了解文本产生的制度背景、语言习惯与实际使用情境。</p>
+<p><span class="action">因此，在让 AI 参与解释时，我们最好尽可能提供必要的背景资料，并且清楚说明哪些情境信息是已经掌握的，哪些只是推测。</span></p>
+<p>必要时，还应当回到原始记录、查阅相关文献，或者通过进一步访谈和观察补充材料。</p>
+<p>因此，AI 可以是有价值的对话伙伴，却无法自动掌握完整的社会情境。</p>
+<h4 id="section-48">6. 让 AI 参与研究，但不要让材料失去出处</h4><p>如果你已经开始尝试利用 AI 整理访谈材料，或者分析历史档案，还需要建立一些具体的工作习惯。</p>
+<p><span class="action">首先，最好保留原始材料，并为它们建立基本的编号与出处记录。</span></p>
+<p>例如，访谈可以使用匿名编号，并记录与研究有关的时间、地点、受访者角色等必要信息；历史档案则应当尽可能保存其来源、日期和文献位置。</p>
+<p>随后，再让 AI 参与整理、编码或解释。</p>
+<p><span class="action">如果 AI 认为某段材料能够支持某项解释，最好要求它指出具体依据，而不是只给出一段概括。</span></p>
+<p>当它提出某种新的判断时，也可以要求区分：哪些内容直接来自材料，哪些属于分析者的推论，还有哪些目前尚缺少证据。</p>
+<p>这样，即使后续研究问题发生变化，我们仍然能够回到原始材料中重新检查。</p>
+<p>此外，访谈和田野材料往往涉及研究伦理与隐私保护。</p>
+<p>并不是所有材料都适合直接上传到外部 AI 服务。涉及个人身份、敏感经历、未公开组织信息等内容时，必须根据知情同意、研究伦理和数据安全要求决定是否可以使用相关工具，必要时进行脱敏，或采用符合要求的本地和受控环境。</p>
+<p>对于质性研究而言，材料的形成过程本身也值得认真记录。</p>
+<p>一段访谈为什么会出现某种回答？研究者当时提出了什么问题？受访者是否受到特定情境的影响？</p>
+<p>这些信息可能直接关系到后续解释的可靠性。</p>
+<p>因此，AI 可以帮助我们提高资料组织与分析的效率，但不应让研究过程变成一个无法追溯原始材料的黑箱。</p>
+<h4 id="section-49">7. 让 AI 成为思想的助产士</h4><p>AI 能帮助质性研究者检索、整理、编码材料，也能通过追问和提出替代解释，参与更开放的探索。我尤其希望大家尝试后一种方式。</p>
+<p>当你发现材料与原有理论不一致时，不妨与 AI 讨论这种差异究竟意味着什么。</p>
+<p>当你对某个现象形成了初步解释时，可以请它寻找潜在的反例，检查自己是否忽略了其他可能性。</p>
+<p>当你发现几种解释都无法充分说明经验材料时，也不必急于获得一个完整答案。</p>
+<p>有时，暂时保留问题、继续补充材料，本身就是更好的研究选择。</p>
+<p>当然，精神助产术、溯因推理与解释学循环，并不是三个可以简单替换的概念。</p>
+<p>前者在这里提供了一种人机对话的启发：通过追问帮助研究者澄清思想。</p>
+<p>溯因推理帮助我们理解，面对意外现象时，怎样提出可能的解释并进一步检验。</p>
+<p>解释学循环则提醒我们，具体材料与整体语境之间的理解关系需要持续调整。</p>
+<p>它们可以在一项研究中相互配合，但各自关注的问题并不相同。</p>
+<p>AI 让研究者能够更充分地比较解释、审视自己的理解；这些讨论终究还得回到材料、情境与学术责任。</p>
+<p>量化与质性研究也并非彼此隔绝：前者同样需要发现问题和修正理论，后者也可以借助编码、比较和数据处理。它们不能被简单等同于“程序”与“对话”。</p>
+<p>真正重要的是，面对不同类型的研究问题，我们能够判断哪些工作适合采用清晰、<strong class="concept">可复现</strong>的操作流程，哪些则需要更加开放的解释与讨论。</p>
+<p><strong>无论采用什么方法，AI 都应当帮助我们更充分地接近研究对象，而不只是更快地获得一份看起来完整的研究结论。</strong></p>
+<p>从这个意义上说，AI 既能够拓展我们的技术能力，也可能成为一种新的思考辅助。</p>
+<p>而当研究逐渐形成结论，我们最终还需要把这些认识组织成一篇能够被他人阅读、理解和检验的文章。</p>
+<p>这也就引出了下一节关于学术写作的讨论。</p>
+<hr>
+<h3 id="section-50">八、学术写作：让论证与证据进入文字</h3><p>文献阅读与经验分析之后，我们往往还需要把思考组织成文章。AI 已能帮助拟提纲、整理材料、检查论证、修改语言和格式，甚至直接生成完整初稿。</p>
+<p>但我想讨论的，是一个稍微不同的问题：<strong>AI 除了能够帮助我们写得更快、更流畅，还能不能帮助我们把原本没有想清楚的事情想清楚？</strong></p>
+<p>在我看来，这可能才是 AI 参与学术写作时最值得探索的方向。</p>
+<h4 id="section-51">1. 写作本身也是思考的一部分</h4><p>你也许有过这样的经历：写课程论文前，觉得材料和观点已经大致齐备；真正打开文档，才发现许多事情并没想清楚。</p>
+<p>有些观点在脑海里似乎很有道理，一旦需要用清楚的语言表达出来，就会暴露许多问题。</p>
+<p>两个看起来相互关联的现象，究竟存在什么关系？</p>
+<p>一段材料能够说明某个事实，但它是否足以支持我们进一步提出的解释？</p>
+<p>一项研究的结论究竟推进了多少，又有哪些判断仍然缺少依据？</p>
+<p>这些问题可能直到我们真正开始写作，才逐渐显现出来。</p>
+<p>因此，我一直认为，学术写作不只是将已经完成的研究转换成文字。很多时候，我们正是在写作过程中，才逐渐发现自己的理解究竟哪里还不够充分。</p>
+<p>举个例子。</p>
+<p>假设你正在撰写一篇关于地方政策变化的课程论文，发现某一时期相关政策文本的发布数量明显增加。</p>
+<p>你可能很自然地写下一句话：</p>
+<p>“政策文本数量的增加，说明地方政府对这一问题的重视程度不断提高。”</p>
+<p>这句话很顺畅，却包含未经充分论证的推断。</p>
+<p>政策文本数量增加，是否一定意味着政府更加重视相关问题？</p>
+<p>这种变化有没有可能来自政策制定周期、机构职责调整、文件类型变化，或者数据库收录范围的改变？</p>
+<p>即使文本数量确实反映了某种政策活动的变化，我们又应该怎样判断这种变化究竟意味着什么？</p>
+<p>如果继续思考下去，我们可能会发现，原本看起来很明确的研究结论，其实还需要补充新的证据，或者进一步限定它能够支持的判断范围。</p>
+<p>写作迫使我们组织能够被他人检验的论证，暴露原先被忽略的问题；AI 可以参与这一过程。</p>
+<h4 id="section-52">2. 让 AI 帮助检查论证，而不只是润色文字</h4><p>许多人首先让 AI 把文字改得“更加学术”“更加流畅”“更加有深度”。但若论证还不清楚，单纯提高语言流畅度并不能解决问题。</p>
+<p>因此，我更推荐大家在形成初稿之后，先让 AI 帮助检查文章的论证，而不是急于修改语言。</p>
+<p>例如，你可以向它提出这样的要求：</p>
+<blockquote>
+<p>这是我正在撰写的一段学术论文。请先不要直接润色，而是识别这一部分的核心论点、主要证据和推理过程。指出哪些判断已经得到材料支持，哪些地方存在论证跳跃，以及读者可能提出什么反对意见。</p>
+</blockquote>
+<p>AI 可以据此重建论证结构，识别各段究竟要证明什么、与上下文如何联系。</p>
+<p>如果某项结论缺少支持，我们可以进一步讨论究竟需要补充什么样的材料。</p>
+<p>如果文章同时包含几种不同的解释，也可以要求 AI 比较这些解释之间是否存在矛盾。</p>
+<p>但这里还有一个需要注意的问题。</p>
+<p>AI 指出某个论证存在漏洞，并不意味着它的判断一定正确。</p>
+<p>有时，它可能误解作者的意思，或者机械地要求增加一些与研究问题关系不大的内容。</p>
+<p>因此，我们需要对这些意见作出选择。</p>
+<p>我更倾向于让 AI 充当一位可以不断讨论的批评者，而不是一位拥有最终裁决权的审稿人。</p>
+<p>例如，当它认为某个判断缺少依据时，我们可以回到材料中检查；如果发现原文已经提供了必要证据，也可以进一步讨论为什么这些证据没有被清楚地组织和呈现。</p>
+<p>这种反复检查，对于提高学术写作质量很有帮助。</p>
+<h4 id="section-53">3. 从段落修改到全文结构：让文章真正形成论证</h4><p>当我们开始撰写篇幅较长的论文时，还会遇到一个很实际的问题：每一部分单独看似乎都有道理，但放在一起，文章却不够连贯。</p>
+<p>例如，你可能写了很长的研究背景，介绍了许多相关政策，却迟迟没有提出真正的研究问题。</p>
+<p>又或者，文章中每一节都包含不错的材料和观点，但各节之间究竟是什么关系，读者很难看出来。</p>
+<p>AI 在这种结构性修改中，可以发挥相当大的作用。</p>
+<p>我比较推荐一种做法：让 AI 根据已经写出的正文，重新提取文章的实际论证结构。</p>
+<p>例如，你可以要求它逐节说明：这一部分提出了什么判断，使用了什么材料，与上一节存在什么关系，又为后面的讨论提供了什么基础。</p>
+<p>这就得到一份反向提纲，帮助我们检查文章实际写出了什么，而非一份理想中的论文应该长什么样。</p>
+<p>当 AI 提取出的结构与我们原本想表达的内容存在差异时，往往值得进一步检查。</p>
+<p>有时，是文章本身没有写清楚。</p>
+<p>有时，则是我们在写作过程中已经产生了新的认识，但尚未调整整体结构。</p>
+<p>例如，你原本想讨论某项改革为什么没有实现预期效果，但随着材料不断积累，发现真正值得解释的现象，可能是改革的影响在不同岗位之间存在显著差异。</p>
+<p>如果这个发现已经成为文章最有意思的部分，那么原来的章节安排就可能需要相应调整。</p>
+<p>AI 可以帮助我们比较不同的组织方式，检查哪些内容重复、哪些部分缺少必要的衔接，以及某一节是否真正推进了全文的论证。</p>
+<p><span class="action">不过，我并不建议大家每次修改文章时，都直接要求 AI 重新生成一份完整提纲。</span></p>
+<p>尤其在研究尚未成熟时，过早采用一套看起来十分工整的结构，可能反过来限制我们对于材料和问题的理解。</p>
+<p>更好的方式，是在实际写作与反复修改中，让文章结构逐渐适应研究本身的需要。</p>
+<h4 id="section-54">4. 规范性：让我们的论证经得起检查</h4><p>学术写作还要讲规范。字体、注释和参考文献格式只是表层；更重要的是证据如何使用、概念怎样界定，以及结论能否接受检查。</p>
+<p>例如，在学术论文中，我们需要清楚区分几种性质不同的表达。</p>
+<p>哪些内容是在转述已有研究？</p>
+<p>哪些是来自访谈、档案或统计分析的经验发现？</p>
+<p>哪些则是作者根据这些材料提出的解释与判断？</p>
+<p>如果这些层次混在一起，读者就很难理解一项结论究竟具有怎样的证据基础。</p>
+<p>AI 可以帮助我们检查这些问题。</p>
+<p>例如，在一篇已经形成初稿的论文中，你可以要求它识别那些包含事实性判断、却没有明确说明依据的段落，或者检查某些概念是否在不同章节中使用了不一致的含义。</p>
+<p>当你提供原始文献和相关材料时，也可以让它协助核对正文对材料的概括是否准确。</p>
+<p>这些检查以实际取得原文为前提。没有访问过资料的模型不能核实引文；自动生成的参考文献也可能出错。重要引文、数据和经验材料，最终都要核对原始来源。</p>
+<p>另外，不同课程和学术机构对 AI 辅助写作可能有不同规定。哪些操作被允许，是否需要披露 AI 的参与，都应当遵守相应要求。</p>
+<p>我认为，AI 可以帮助我们降低许多规范性工作的操作成本，使研究者把更多精力投入文章真正重要的论证之中。</p>
+<p>但规范的意义始终在于让学术表达能够接受检查，而不只是让文章看起来符合某种格式。</p>
+<h4 id="section-55">5. 让 AI 参与修改，也要保留自己的写作方式</h4><p>除了论证和引证，还要关注作者自己的表达。第一篇已经讨论过生成内容的同质化问题；在学术写作中，尤其值得留意表达方式与研究对象的关系。</p>
+<p>文章的表达方式，常常与作者理解问题的方式密切相关。</p>
+<p>例如，有些研究适合通过清晰的概念辨析展开论证，有些则需要细致地叙述历史事件与社会过程。</p>
+<p>不同学科、不同问题，可能需要完全不同的写作节奏。</p>
+<p><span class="action">因此，当我们让 AI 润色文字时，最好能够明确说明自己希望保留什么。</span></p>
+<p>如果原文已经能够准确表达意思，就没有必要为了显得更加学术，而刻意增加抽象术语。</p>
+<p>如果一段论证需要保留某种不确定性，也不应该为了让结论看起来更加有力，就随意删除必要的限定条件。</p>
+<p>有时，一段朴素、直接的文字，恰恰比一段结构工整、修辞丰富的表达更加准确。</p>
+<p>我比较推荐将 AI 作为一位可以配合的编辑。</p>
+<p>在比较重要的修改中，可以先要求它指出问题，再讨论修改方案。</p>
+<p>例如，当你觉得某一段写得不够好时，可以先让 AI 分析问题究竟出在论证、结构还是语言上，再决定是否进行修改。</p>
+<p>当你不满意某个版本，也可以向它解释为什么不满意，逐渐澄清自己的表达意图。</p>
+<p>经过反复修改，我们希望得到的是一篇论证更加充分、表达更加准确的文章，而不是一篇完全失去作者个人特点的标准化文本。</p>
+<h4 id="section-56">6. 写作的最终目标，是让自己的认识能够被理解与检验</h4><p>AI 可以检查论证、讨论结构、发现表达含混之处，也能承担繁琐的格式整理。而反复修改本身，还可能暴露我们对问题理解的不足。</p>
+<p>有时，AI 的批评会帮助我们补充证据。</p>
+<p>有时，我们会在反驳 AI 的过程中，更清楚地认识到自己为什么坚持某项判断。</p>
+<p>还有时，一篇文章原本的问题意识，会在持续写作和修改的过程中逐渐发生变化。</p>
+<p>我认为，这些经历都可能成为真正有价值的学习过程。</p>
+<p>对于刚刚进入大学的同学来说，不必要求自己从一开始就写出成熟的学术论文。</p>
+<p>你可以先尝试写清楚一个问题，认真组织一段论证，再逐渐学习怎样让不同部分相互衔接。</p>
+<p>AI 可以帮助我们完成其中很多具体工作，也可以让我们获得更加及时的反馈。</p>
+<p><span class="action">但对于那些真正重要的论点，我们最好仍然能够解释其形成过程，说明自己采用了什么证据，以及为什么最终愿意接受这一判断。</span></p>
+<p><strong>学术写作的意义，在于将自己的认识组织成能够被他人理解、讨论和检验的表达。</strong></p>
+<p>当 AI 能够帮助我们更快地完成这项工作时，我们也就有机会把更多精力投入真正需要思考的地方。</p>
+<p>至于针对不同论文类型的具体编辑方法与个人风格培养，值得留待专题讨论。</p>
+<p>而从文献阅读、经验研究到论文写作，实际上也已经可以看出，不同的研究方法并不是彼此封闭的。AI 所带来的另一种可能性，正是在这些方法与材料之间建立新的联系。</p>
+<hr>
+<h3 id="section-57">九、跨越方法边界：AI 为人文社科研究带来的新可能</h3><p>文献阅读、数据分析、访谈和写作在实际研究中相互联系：阅读引出问题，经验材料帮助检验解释，而新发现又可能促使我们重读既有研究。</p>
+<p>而 AI 正在降低部分研究技术的使用门槛，让我们有机会围绕同一个问题，尝试不同的材料和方法。</p>
+<h4 id="section-58">1. 让不同类型的证据围绕同一个问题展开</h4><p>还是以校园公共空间为例。</p>
+<p>假设你通过问卷发现，两个校区学生的公共空间使用频率存在差异。量化分析可以帮助识别这种差异，但要进一步理解它为什么出现，可能还需要访谈学生，了解他们对空间距离、设施和学习习惯的实际体验。</p>
+<p>与此同时，你还可以阅读学校有关公共空间建设的规划文件，了解这些空间最初的设计目的，以及它们在建设和管理过程中经历了什么变化。</p>
+<p>问卷、访谈和规划文件提供了不同类型的证据。它们未必相互印证，甚至可能呈现不同的图景。这时，我们需要进一步考虑：这些差异是来自测量方式、材料所处的情境，还是我们原先的问题就需要重新界定？</p>
+<p>AI 可以整理问卷、检索访谈记录、比较原始文件，让初学者更早尝试过去受软件门槛限制的探索。</p>
+<p>但不同类型的证据不能因为能够被 AI 放在一张表里，就自动获得相同的解释效力。一次访谈无法直接代表整个学生群体，一组统计关联也不能自动说明个体行为的动机。方法的组合仍然需要服务于具体的研究问题。</p>
+<h4 id="section-59">2. 探索此前难以尝试的研究方式</h4><p>除了结合常见的调查与访谈方法，AI 还可能让一些具有较高技术门槛的研究方式变得更容易尝试。</p>
+<p>例如，历史学和文学研究中的大量报刊、档案与文学文本，政治学和公共管理研究中的跨年度政策文件，都可能包含值得比较的概念、表达和结构变化。借助 AI 与其他计算工具，学生可以尝试对这些材料进行检索、分类、比较和可视化，再回到原始文本中理解具体语境。</p>
+<p>这些工作与数字人文、计算社会科学等已有传统密切相关。AI 没有创造这些方法，却降低了部分编程与资料处理门槛。</p>
+<p>当然，批量处理不等于自动获得可靠的研究结论。比如让模型给政策文本分类，需要明确编码规则、检查模型输出，并通过适当的人工核验评估其可靠性。面对历史材料，还需要考虑语言习惯和文本产生的时代背景。</p>
+<h4 id="section-60">3. 从研究问题出发，保持方法上的开放</h4><p>我更希望这种变化带来的，是一种方法上的开放性。</p>
+<p>我们可以从一个真正感兴趣的问题出发，判断需要哪些证据，再借助 AI 学习和尝试合适的方法，而不必因为暂时缺少某种软件操作经验，就过早放弃研究设想。</p>
+<p>有些问题适合通过数据观察整体变化，有些需要通过访谈、历史材料理解具体情境，也有些依赖严密的概念辨析与理论论证。并不需要为了显得方法丰富，就把所有工具都使用一遍。</p>
+<p><strong>AI 的价值，是让我们有机会以更多方式接近值得研究的问题，同时继续尊重不同方法各自的证据标准。</strong></p>
+<p>这些可能性值得探索。不过，理解了 AI 能够参与哪些研究活动之后，真正动手时可能还有不少具体问题：应该先使用哪一种工具？怎样从简单的对话开始，逐渐建立可靠的使用习惯？</p>
+<h2 id="section-61">第三篇 · 术：从零开始，走向真正的人机协作</h2><p>对初学者而言，真正动手时遇到的第一个困难，有时只是网上层出不穷的技术名词。</p>
+<p>各种教程告诉你要学习 Prompt Engineering、配置 <strong class="concept">API</strong>、安装 <strong class="concept">Skill</strong>、连接 MCP、搭建 <strong class="concept">Agent</strong>，甚至还要掌握命令行、Git 和 Python。</p>
+<p>这些东西当然都有用。但如果一开始就把它们全部摆在新生面前，恐怕很容易让人失去继续探索的兴趣。</p>
+<p>其实，我们完全可以从最简单的使用方式开始。</p>
+<p>我们可以沿着四种使用方式逐步尝试：</p>
+<p><strong>Chatbot → Tool → Copilot → Agent。</strong></p>
+<p>这里需要提前说明，这四个阶段并不是严格的技术分类，也不意味着后一阶段一定比前一阶段更高级。</p>
+<p>现在的聊天产品可能已经内置各种工具，<strong class="concept">Copilot</strong> 也可能具备 <strong class="concept">Agent</strong> 能力。我们所做的区分，主要是为了帮助初学者逐渐理解 AI 能够以哪些方式参与我们的工作。</p>
+<p>刚开始，我们可以学着与 AI 对话，让它帮助理解一个问题。</p>
+<p>随后，尝试让 AI 借助工具完成一项具有实际成果的任务。</p>
+<p>当工作逐渐复杂，我们可以让 AI 持续参与一个项目，帮助组织资料、检查进度与维护工作状态。</p>
+<p>如果确实遇到了具有较多重复步骤、需要持续调用工具的任务，再进一步探索 <strong class="concept">Agent</strong> 和 <strong class="concept">Harness</strong>。</p>
+<p>一篇简单课程论文也许只需要聊天窗口；面对大量文件，<strong class="concept">Agent</strong> 才更可能体现优势。</p>
+<p><strong>我们需要学习的，是怎样根据实际问题选择合适的技术，而不是为了使用新技术，给自己制造一套更加复杂的工作流程。</strong></p>
+<p>接下来，就从每个人都能尝试的聊天窗口开始。</p>
+<hr>
+<h3 id="section-62">十、Chatbot：从第一次有效对话开始</h3><p>第一次使用 AI，不需要编程，也不必先学复杂的<strong class="concept">提示词</strong>。打开一个能够正常使用的聊天产品就可以开始。</p>
+<h4 id="section-63">1. 先选一个能够正常使用的聊天工具</h4><p>目前，常见的 AI 聊天产品包括 ChatGPT、Claude、Gemini、DeepSeek、通义千问、豆包等。</p>
+<p>不同产品在模型能力、功能设计、免费额度和可访问地区等方面存在差异。但对于刚刚开始接触 AI 的同学，我认为暂时没有必要研究复杂的模型排行榜。</p>
+<p>选择一款能够稳定使用、提供基本对话功能的产品，就足够开始了。</p>
+<p>如果条件允许，也可以同时体验两款不同产品，比较它们对于相同问题会给出怎样的回答。</p>
+<p>但没有必要一开始就购买多个会员，更不必因为网上有人宣称某款模型“最强”，就立刻更换自己已经熟悉的工具。</p>
+<p>当你逐渐产生更加具体的需求，例如处理较长的文献、分析数据或使用某种专门工具时，再比较不同产品是否适合自己的任务，会更加有意义。</p>
+<h4 id="section-64">2. 第一次练习：和 AI 认真讨论一个问题</h4><p>还记得前面《哲学概论》的期中论文吗？</p>
+<p>我们不妨从一个简单的问题开始：</p>
+<p>“如果人的行为受到此前原因的决定，我们为什么还需要为自己的行为承担道德责任？”</p>
+<p>你可以把这个问题直接发给 AI，让它介绍有关自由意志与道德责任的基本争论。</p>
+<p>它可能会提到决定论、相容论等概念，也可能介绍不同哲学家对于责任条件的理解。</p>
+<p>如果你此前没有学过相关知识，第一次回答未必能够完全看懂。</p>
+<p>没有关系。</p>
+<p>你可以继续追问：</p>
+<blockquote>
+<p>我没有理解决定论为什么会威胁道德责任。你能不能用一个生活中的例子解释？</p>
+</blockquote>
+<p>等到能够理解基本观点之后，再尝试提出自己的疑问。</p>
+<p>例如：</p>
+<blockquote>
+<p>假如一个人虽然受到了因果条件的影响，却仍然按照自己的意愿行事，这是否意味着他依然具有某种自由？</p>
+</blockquote>
+<p>接下来，我们可以反过来，让 AI 检查自己的理解：</p>
+<blockquote>
+<p>我正在学习自由意志与道德责任的关系。请你像一位老师一样，向我提出几个有针对性的问题，检查我是否理解了决定论和相容论的基本分歧。如果我的回答存在问题，请先指出问题在哪里，不要直接给出完整答案。</p>
+</blockquote>
+<p>这就构成了一次非常简单，却有实际价值的学习练习。</p>
+<p>你不需要先掌握<strong class="concept">提示词</strong>工程（Prompt Engineering），也不需要安装任何额外工具。</p>
+<p>只需要根据自己真正不理解的地方持续提问，尝试回答，并且检查 AI 提供的解释。</p>
+<p>当然，AI 的解释也可能不准确，尤其是在复杂的哲学论证中，它可能忽略重要的限定条件。如果出现疑问，可以要求它提供可靠出处，再与教材和原始文献进行比较。</p>
+<p>完成几轮讨论之后，不妨暂时关掉聊天窗口。</p>
+<p>试着不用 AI，向一位同学解释：决定论为什么会引发自由意志问题，而相容论又试图怎样回应这一困难？</p>
+<p>如果你能够更加清楚地说出来，那么这次对话就已经取得了很不错的效果。</p>
+<h4 id="section-65">3. 不必迷信所谓的“万能提示词”</h4><p>当你稍微熟悉 AI 之后，可能会在网上看到大量<strong class="concept">提示词</strong>教程。</p>
+<p>有些教程要求你为 AI 指定一个特别复杂的角色，有些则提供几十条甚至上百条可以直接复制的模板。</p>
+<p>这些方法在特定场景下可能有用，但对于日常学习，我认为没有必要刻意追求<strong class="concept">提示词</strong>的复杂程度。</p>
+<p>很多时候，一段清楚、自然的文字，就足以表达我们的要求。</p>
+<p>例如：</p>
+<blockquote>
+<p>我是刚刚开始学习社会学的本科生，请用大学生活中的例子解释什么是社会结构。</p>
+</blockquote>
+<p>这样的表达，已经包含了读者的学习背景、希望理解的内容，以及期待的解释方式。</p>
+<p>如果回答不符合预期，就继续向 AI 说明原因。</p>
+<p>你可以告诉它哪些地方已经理解，哪些地方仍然困惑，以及你希望进一步讨论什么。</p>
+<p>甚至当你自己也不知道究竟想问什么时，可以直接让 AI 帮助你澄清问题。</p>
+<p>这种持续调整的过程，往往比记住某套固定的<strong class="concept">提示词</strong>模板更加重要。</p>
+<p>关于表达、对话和主导权，我们在第一篇已经讨论得比较充分，这里就不再重复展开。</p>
+<p>你只需要记住：<strong>与 AI 交流并不需要特殊的咒语，重要的是在对话中逐渐澄清自己的问题。</strong></p>
+<h4 id="section-66">4. 顺手体验一下多模态</h4><p>在熟悉文字对话之后，大家还可以尝试一些更加直观的功能。</p>
+<p>比如，拍摄一页教材，让 AI 解释其中难懂的内容。</p>
+<p>或者上传一张统计图，让它说明图表中不同变量的含义，并提醒自己有哪些地方需要进一步检查。</p>
+<p>如果产品支持语音对话，可以让 AI 扮演一位英语口语练习伙伴，模拟机场值机、课堂讨论或面试。</p>
+<p>如果你对艺术与设计感兴趣，也可以体验图片生成等功能，观察 AI 怎样根据文字要求生成视觉作品。</p>
+<p>这些体验也能让你直观了解 AI 已经不再局限于文字问答。</p>
+<p>当然，不同产品支持的模态与功能并不相同。上传图片、录音或个人资料时，也要注意版权、隐私与使用权限。</p>
+<h4 id="section-67">5. 这一阶段，怎样算真正入门？</h4><p>此时，你已经能借助多轮对话澄清问题，也可能体验了图像理解和语音交流。如果主要需求是学习与讨论，聊天窗口已经能解决不少问题。</p>
+<p>但随着大学生活逐渐展开，你很可能会遇到一些不同的任务。</p>
+<p>例如，希望 AI 帮你整理一份表格、制作一张图表，或者直接生成一份可以编辑的文档。</p>
+<p>这时，单纯获得一段文字回答，就未必能够满足需要了。</p>
+<p>我们可以进一步尝试让 AI 真正完成一些具体操作。</p>
+<hr>
+<h3 id="section-68">十一、Tool：让 AI 交付一份真正可用的成果</h3><p>当我们已经熟悉与 AI 对话，就可以开始尝试让它借助工具完成一些实际工作。</p>
+<p>这里所说的 Tool，并不特指某一款产品。</p>
+<p>它指的是 AI 能够调用外部工具或执行环境，实际进行检索、计算、文件处理等操作。</p>
+<p>例如，一款具备数据分析能力的 AI 产品，可能能够运行程序、读取 Excel 文件并生成统计图表。</p>
+<p>另一款产品则可能能够处理 Word、PDF 或演示文稿，甚至将结果导出为可编辑文件。</p>
+<p>我们可以开始要求它交付实际成果。</p>
+<h4 id="section-69">1. 第一次练习：让 AI 整理一份活动工作表</h4><p>假设你加入了学校的一个学生社团，最近正在协助筹备一场讲座。</p>
+<p>经过小组讨论，你们已经形成了一份比较杂乱的工作记录。</p>
+<p>里面提到了联系嘉宾、预约场地、设计海报、发布报名通知、准备设备等事项，但有些任务没有明确负责人，有些时间节点也尚未确定。</p>
+<p>现在，你希望把这份记录整理成一张可以持续更新的 Excel 工作表。</p>
+<p>如果使用具备文件创建能力的 AI 产品，可以将这份不含敏感信息的工作记录上传，再提出这样的要求：</p>
+<blockquote>
+<p>请根据这份活动筹备记录，制作一张可以编辑的 Excel 工作表，包括任务名称、具体事项、负责人、截止时间、当前状态和备注。原始记录中没有说明的信息请留空或标注“待确认”，不要自行编造。生成文件后，请再检查是否遗漏了任何任务。</p>
+</blockquote>
+<p>如果工具支持相应操作，它就可以尝试读取材料、整理任务，并生成一份实际文件。</p>
+<p>下载之后，你还可以在 Excel 或其他表格软件中继续编辑。</p>
+<p><strong>这次交付的不是一段回答，而是一份需要真正使用的文件。</strong></p>
+<p>不过，即使 AI 告诉你“工作表已经制作完成”，也需要打开文件检查。</p>
+<p>它可能遗漏某项任务，将某个时间理解错误，或者把没有明确负责人的事项错误地分配给某个人。</p>
+<p>对于更复杂的文件，还可能出现排版错乱、公式错误或格式兼容性问题。</p>
+<p><span class="action">所以，完成这类任务时，最好形成一个简单习惯：先明确需要交付什么，再实际打开成果检查。</span></p>
+<p>如果文件存在问题，可以继续要求 AI 修改，而不必从头重新制作。</p>
+<p>这样，你就完成了一次比较完整的工具使用练习。</p>
+<h4 id="section-70">2. 除了制作表格，还可以做些什么？</h4><p>掌握这个基本思路之后，大家可以围绕自己的需求，尝试更多任务。</p>
+<p>例如，在<strong>文件处理</strong>方面，可以让 AI 帮助整理课程资料、提取 PDF 中的表格，或者将会议纪要转换为结构化文档。</p>
+<p>在<strong>信息检索</strong>方面，可以使用具备联网检索功能的 AI 查找公开资料，再核对原始网页、发布机构和时间。</p>
+<p>在<strong>数据分析</strong>方面，可以上传一份没有敏感信息的公开数据，要求 AI 先说明数据结构，再生成简单的统计图表。</p>
+<p>在<strong>内容制作</strong>方面，可以根据已经确定的展示大纲，尝试制作一份课堂演示文稿，或者辅助生成符合主题的视觉素材。</p>
+<p>这些功能并不一定由同一个产品提供。</p>
+<p>有些 AI 工具更擅长文档处理，有些则具有更成熟的数据分析环境，还有些能够连接其他软件和在线服务。</p>
+<p>我们可以根据任务选择工具，没有必要要求一个聊天产品完成全部工作。</p>
+<p><span class="action">而且，我并不建议大家为了体验这些功能，专门给自己安排大量没有实际用途的练习。</span></p>
+<p>如果最近正好需要整理一次社团活动，就拿这项任务试一试。</p>
+<p>如果正在准备课堂展示，可以尝试让 AI 帮你制作一张真正需要使用的图表。</p>
+<p><strong>从真实需求出发，才能逐渐理解哪些工具确实有价值。</strong></p>
+<h4 id="section-71">3. 开始留意 AI 究竟做了什么</h4><p>当我们开始让 AI 处理文件、检索网页或执行计算时，还需要逐渐养成一种新的观察习惯。</p>
+<p>那就是区分 AI 对某项操作的描述，与它实际完成的工作。</p>
+<p>例如，你让 AI 检索一篇论文。</p>
+<p>它可能给出看起来相当完整的文献介绍，但你需要确认它是否真的访问了相关数据库或原始文献。</p>
+<p>如果它只是凭借已有知识生成了一个参考文献信息，那么仍然可能存在错误。</p>
+<p>再例如，你让 AI 统计一份数据。</p>
+<p>如果它能够实际运行代码，你就可以进一步查看它使用了什么数据、采用了怎样的计算方法。</p>
+<p>但如果它只是在聊天窗口中根据一段简短描述估算结果，就不能直接将其视为实际计算得到的统计值。</p>
+<p>对于正式研究来说，这种区别尤其重要。</p>
+<p>同样，生成了一段 Python 代码，也不代表这段代码已经成功运行；声称修改了文件，也不代表文件确实发生了变化。</p>
+<p><span class="action">如果具备相应功能，最好让 AI 提供实际文件、运行结果或操作记录。</span></p>
+<p>你不需要一开始就能读懂所有代码，但至少应当知道结果来自哪里，以及怎样确认任务已经完成。</p>
+<h4 id="section-72">4. 进阶拓展：什么是 API？</h4><p>在熟悉 AI 工具之后，你可能会遇到一个新的技术概念：<strong class="concept">API</strong>。</p>
+<p><strong class="concept">API</strong> 是 Application Programming Interface，即应用程序编程接口。</p>
+<p>简单来说，它是一种让不同软件按照约定方式交换请求和结果的机制。</p>
+<p>平时使用 ChatGPT、DeepSeek 等聊天产品，我们主要通过网页或应用程序与模型交互。</p>
+<p>而当某个第三方软件希望调用大模型时，它就可能通过模型提供商开放的 <strong class="concept">API</strong> 发起请求。</p>
+<p>例如，你正在使用一款允许自行选择模型的 AI 工具。</p>
+<p>它可能要求填写几个信息：</p>
+<ul>
+<li><strong>API Key</strong>：用于验证调用者身份的访问密钥。</li>
+<li><strong>Base URL</strong>：对应 <strong class="concept">API</strong> 服务的访问地址。</li>
+<li><strong>Model</strong>：希望调用的模型标识符。</li>
+</ul>
+<p>通过这些信息，软件就有机会连接相应的模型服务。</p>
+<p>不过，这里需要注意两件事情。</p>
+<p>首先，聊天产品的免费额度、付费会员与开发者 <strong class="concept">API</strong>，通常属于不同的服务。购买某个聊天产品的会员，并不意味着自动获得了对应 <strong class="concept">API</strong> 的调用额度。</p>
+<p>其次，<strong class="concept">API</strong> 可能按照使用量收取费用。因此，在配置之前，需要了解具体计费规则，并根据平台提供的功能设置预算、用量提醒或调用限额。</p>
+<p>对于完全没有技术基础的同学，我想再次强调：<strong>API 是一项值得了解的进阶知识，但并不是使用 AI 工具的必要前提。</strong></p>
+<p>如果现成的聊天产品已经能够生成文件、分析数据，就可以直接使用这些功能。</p>
+<p>只有当你确实需要接入第三方软件、选择特定模型，或者探索更加自由的工具配置时，再学习 <strong class="concept">API</strong>，也完全来得及。</p>
+<h4 id="section-73">5. 如果想动手体验，可以怎样调用一次 API？</h4><p>如果你对技术本身感兴趣，不妨尝试完成一次简单的 <strong class="concept">API</strong> 调用。</p>
+<p>这里仍然以 DeepSeek 官方 <strong class="concept">API</strong> 为例。</p>
+<p>首先，进入开发者平台：</p>
+<p><a href="https://platform.deepseek.com/">https://platform.deepseek.com/</a></p>
+<p>注册并登录账号，根据平台说明创建 <strong class="concept">API</strong> Key。</p>
+<p>获得密钥之后，要妥善保管，不要将其发送到公开聊天群，也不要写入准备公开上传的项目文件。</p>
+<p>如果你正在使用一款支持自定义模型的图形化工具，可以优先通过设置界面填写 <strong class="concept">API</strong> 地址、模型名称和密钥。</p>
+<p>这通常比直接运行终端命令更加容易。</p>
+<p>DeepSeek 官方 <strong class="concept">API</strong> 文档所列的 OpenAI 兼容接口基础地址为：</p>
+<p><code>https://api.deepseek.com</code></p>
+<p>模型标识符会随版本变化，实际调用时应以<a href="https://api-docs.deepseek.com/zh-cn/">DeepSeek 官方 API 文档</a>为准。</p>
+<p>如果希望进一步体验命令行，可以在 macOS 或 Linux 终端中尝试使用 <code>curl</code> 发送请求。</p>
+<p>首先设置环境变量。下面的写法便于演示，但直接输入密钥可能留下终端历史记录；在实际使用中，优先选择软件提供的密钥管理方式，或采用避免记录密钥的输入方式：</p>
+<pre><code class="language-bash">export DEEPSEEK_API_KEY=&quot;填写你自己的API密钥&quot;
+</code></pre>
+<p>随后发送一次测试请求：</p>
+<pre><code class="language-bash">curl https://api.deepseek.com/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;Authorization: Bearer ${DEEPSEEK_API_KEY}&quot; \
+  -d &#39;{
+    &quot;model&quot;: &quot;deepseek-flash&quot;,
+    &quot;messages&quot;: [
+      {
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;请用一句话解释相关关系与因果关系的区别。&quot;
+      }
+    ],
+    &quot;stream&quot;: false
+  }&#39;
+</code></pre>
+<p>如果账号状态、网络连接及参数都没有问题，服务器就会返回一份包含模型回答的响应。</p>
+<p>Windows PowerShell 的环境变量和命令写法有所不同，需要采用对应的语法。</p>
+<p>此外，模型标识符和接口规则可能随版本更新，实际操作时请以官方文档为准：</p>
+<p><a href="https://api-docs.deepseek.com/zh-cn/">https://api-docs.deepseek.com/zh-cn/</a></p>
+<p>对于第一次尝试的同学，没有必要马上理解这段命令中的全部细节。</p>
+<p>你只需要知道，本机正在向指定的 <strong class="concept">API</strong> 地址发送一个请求，其中包含身份验证信息、模型名称和提问内容；模型服务处理请求后，再将结果返回。</p>
+<p>到这里，你便获得了关于 <strong class="concept">API</strong> 工作方式的第一手体验。</p>
+<p>如果今后希望使用需要自行配置模型的 <strong class="concept">Agent</strong> 或 <strong class="concept">Harness</strong>，这些知识就会逐渐派上用场。</p>
+<h4 id="section-74">6. 这一阶段，最值得获得什么能力？</h4><p>经历了这些尝试，你应该已经能够让 AI 帮助完成一些有明确交付成果的任务。</p>
+<p>例如，制作一份可编辑的工作表、整理文件、生成图表，或者调用外部信息服务。</p>
+<p>你也开始理解，模型的文字回答与外部工具的实际执行之间存在怎样的区别。</p>
+<p>有兴趣的同学，还可以进一步了解 <strong class="concept">API</strong>，尝试自己配置模型服务。</p>
+<p>这一阶段最值得养成的习惯，是检查实际交付的文件、数据和操作结果。<strong>AI 说“完成了”，并不等于成果已经符合要求。</strong></p>
+<p>当单次任务已经能够顺利完成之后，我们还可能遇到更复杂的工作。</p>
+<p>有些项目会持续数周甚至数月，不断产生新的材料、问题和修改意见。</p>
+<p>这时，我们可能需要让 AI 从偶尔完成一项任务，进一步走向持续性的协作。</p>
+<hr>
+<h3 id="section-75">十二、Copilot：让 AI 持续参与一项完整的工作</h3><p>一次对话或文件操作，难以覆盖一项持续数周的社会调查：从讨论主题、阅读文献、设计访谈，到整理材料和完成展示，方向不断调整，资料持续积累。如果每次打开 AI 都要重新交代进度，协作成本就会越来越高。</p>
+<p>这时候，我们可以尝试另一种工作方式：<strong>让 AI 持续参与一个完整项目。</strong></p>
+<p>这里使用 <strong class="concept">Copilot</strong> 一词，主要是为了描述这种持续协作的关系，不特指某一款同名商业产品。</p>
+<h4 id="section-76">1. 第一次建立项目空间</h4><p>以一项为期一个月的社区公共服务课程调研为例，可以先建立独立的 AI 项目空间。</p>
+<p>有些 AI 产品提供项目、工作区或持续会话等功能，允许用户集中管理相关材料和说明。</p>
+<p>如果你使用的工具支持本地文件访问，也可以直接为项目创建一个文件夹。</p>
+<p>例如：</p>
+<pre><code class="language-text">社区公共服务调研/
+├── sources/       # 课程要求、公开资料与参考文献
+├── notes/         # 讨论记录、阅读笔记与研究札记
+├── data/          # 允许在此环境中保存的调查资料
+├── drafts/        # 调研方案与报告草稿
+└── output/        # 最终报告与展示材料
+</code></pre>
+<p>这只是便于组织工作的目录示例，规模较小的项目用普通文件夹也足够。关键在于把确认过的研究问题、访谈方案和新增材料保存下来，不必完全依赖聊天记录。</p>
+<p>这里需要注意，不同 AI 产品对于项目文件和聊天历史的读取方式并不相同。</p>
+<p>建立了项目，不等于 AI 一定能够自动理解其中的全部材料。你需要确认它实际能够访问哪些文件、是否读取到了最新版本，以及有哪些信息仍然需要明确提供。</p>
+<h4 id="section-77">2. 让 AI 参与项目推进</h4><p>建立工作空间之后，可以尝试让 AI 帮助梳理当前项目的状态。</p>
+<p>例如，你可以将课程要求、初步研究想法和已有的公开资料提供给它，要求先说明任务范围，再帮助整理接下来需要完成的工作。</p>
+<p>研究尚在探索时，不必急于制定几十页的详细计划。可以先聚焦几个问题：</p>
+<p>研究对象与范围是否明确？</p>
+<p>现有的公开资料能够告诉我们什么？</p>
+<p>如果准备开展访谈，还需要先解决哪些研究设计与伦理问题？</p>
+<p>随后，随着项目逐渐推进，再让 AI 参与不同的工作。</p>
+<p>在文献阅读阶段，它可以帮助整理已有研究，比较重要概念与观点。</p>
+<p>在研究设计阶段，可以与它讨论访谈提纲是否存在模糊或诱导性的问题。</p>
+<p>当团队形成初步发现之后，又可以让它帮助检查材料与解释之间是否存在明显的缺口。</p>
+<p>最后，在报告撰写和课堂展示阶段，可以进一步利用 AI 检查论证结构、制作图表与整理展示材料。</p>
+<p>前一篇已经介绍过这些具体应用；<strong class="concept">Copilot</strong> 更关注的是<strong>怎样把分散的任务组织为持续协作</strong>。</p>
+<h4 id="section-78">3. 把重要的工作状态保存下来</h4><p>对于长期项目，我尤其推荐建立一个简单的项目记录文件。</p>
+<p>例如，可以在项目目录中创建一份 <code>README.md</code>，简要说明项目目前的状态。</p>
+<p>内容不需要很复杂：</p>
+<pre><code class="language-markdown"># 社区公共服务调研
+
+## 当前研究方向
+社区居民对公共服务设施的使用体验。
+
+## 已完成
+- 整理课程要求
+- 初步阅读相关文献
+- 形成第一版访谈提纲
+
+## 正在讨论
+- 研究对象是否需要进一步缩小
+- 不同类型公共服务设施是否适合放在一起比较
+
+## 下一步
+- 修改访谈提纲
+- 明确调查对象与资料使用要求
+
+## 需要注意
+- 暂不将未经脱敏的访谈资料上传外部服务
+- 研究方案的重要修改需由小组成员共同确认
+</code></pre>
+<p>这份说明可以不断更新，也方便在更换会话或 AI 产品后恢复项目背景。</p>
+<p>如果某次讨论形成了比较重要的新认识，也可以要求 AI 帮助整理为研究札记。</p>
+<p>例如，将某项研究问题是怎样修改的、为什么放弃原来的方案，以及目前还有哪些疑问，分别记录下来。</p>
+<p>比起依赖漫长的聊天历史，这种记录更稳定。但要核对 AI 的总结：它可能把临时讨论误记为正式决定，或遗漏保留意见。经团队确认后，再将结论写入项目记录。</p>
+<h4 id="section-79">4. 怎样让 AI 理解我们的长期要求？</h4><p>当 AI 持续参与一个项目时，还有一些要求可能需要反复强调。</p>
+<p>例如，不能编造文献或访谈内容，不得随意修改原始材料，生成的文件需要保存到指定位置，涉及研究方案的重大调整应先征求小组意见。</p>
+<p>如果每次都重新说明，会显得比较麻烦。</p>
+<p>因此，我们可以考虑将它们整理为一份项目说明。</p>
+<p>对于提供项目设置功能的 AI 产品，可以直接在相应的位置填写长期指令。</p>
+<p>如果使用支持项目级说明文件的 <strong class="concept">Harness</strong>，也可能通过 <code>AGENTS.md</code> 等文件保存这些约定。</p>
+<p>例如：</p>
+<pre><code class="language-markdown"># 社区公共服务调研项目
+
+## 项目目标
+协助整理研究资料、讨论研究方案并准备课程报告。
+
+## 工作约定
+- 不编造访谈内容、文献与数据。
+- 区分原始材料、AI 的分析建议与已确认的研究结论。
+- 未经确认，不覆盖或删除原始文件。
+- 对研究方案的重大修改，先提出建议供团队讨论。
+- 每次完成重要任务后，说明修改内容与待检查事项。
+</code></pre>
+<p>项目说明有助于保持一致的工作方式，却不构成实际权限控制。写下“不得删除”并不能在技术上阻止删除，重要文件仍应备份并设置权限。初学者直接使用产品提供的项目设置即可，不必急于研究配置规范。</p>
+<h4 id="section-80">5. 长期协作中，什么时候应该检查成果？</h4><p>让 AI 持续参与项目之后，我们可能会很自然地希望它承担越来越多的工作。</p>
+<p>但这时候，更需要学会判断哪些环节应当进行人工检查。</p>
+<p>例如，当 AI 帮助整理了一批参考文献之后，可以先核对文献是否真实存在，作者、题目与主要观点是否准确。</p>
+<p><span class="action">当它根据访谈提纲提出新的研究方案时，可以检查这些建议是否符合课程要求和实际调查条件。</span></p>
+<p>当它修改报告草稿时，也可以要求提供修改说明，避免原本重要的论证在不经意间被删掉。</p>
+<p>可以在研究问题确定、调查方案形成、主要材料整理完成等节点分别核查，避免错误积累到最后才暴露。</p>
+<p>当然，也不需要对每一次无关紧要的操作都进行细致监督。</p>
+<p>如果只是整理几个文件名，或调整一张表格的显示格式，我们可以让 AI 获得相对充分的执行空间。</p>
+<p>但涉及研究设计、原始材料修改、重要论证以及无法轻易撤销的操作时，就需要更加谨慎。</p>
+<p>对于涉及真实调查对象的项目，还应当遵守知情同意、隐私保护和资料使用要求。是否能够将调查资料提供给外部 AI 服务，应当根据相关规定和实际授权判断。</p>
+<p><strong>持续协作的关键，在于让 AI 能够理解项目背景、完成具体工作，并在重要节点接受检查。</strong></p>
+<p>它不需要替我们决定项目中的一切，也不必每完成一个很小的动作都等待人工批准。</p>
+<h4 id="section-81">6. 这一阶段，我们真正学会了什么？</h4><p>持续协作可以依靠成熟产品的工作区，也可以用本地文件夹、Markdown 笔记和文件工具完成。关键在于保存工作状态、维护长期要求，并在重要节点检查成果。</p>
+<p>不过，随着研究项目的规模进一步扩大，我们也可能遇到一种新的任务。</p>
+<p>但若需要从上百份政策文件中提取信息、处理异常并合并结果，逐步下达指令就显得低效。这时，可以尝试在明确权限和验收标准后，让 <strong class="concept">Agent</strong> 自主组织多步骤执行。</p>
+<hr>
+<h3 id="section-82">十三、Agent：从委托任务到自主执行</h3><p><strong class="concept">Agent</strong> 与 <strong class="concept">Copilot</strong> 都可能读取文件、使用工具、持续参与项目。要理解两者在实际使用中的差异，不妨先看：<strong>工作过程主要由谁组织？</strong></p>
+<p>在典型的 <strong class="concept">Copilot</strong> 协作中，我们通常负责推进整个项目：决定下一步做什么，什么时候调整方向，以及何时调用 AI 完成具体任务。</p>
+<p>而在 <strong class="concept">Agent</strong> 模式下，我们可以将一项边界相对明确的任务整体委托给 AI，让它自行规划和执行其中的多个步骤，并根据执行结果进行调整。</p>
+<p>同一款产品可能兼具两种方式，但从响应指令到自主安排一组操作，协作关系已发生变化。</p>
+<h4 id="section-83">1. Agent 真正改变了什么？</h4><p>不妨想象这样一项任务。</p>
+<p>你手头有八十份公开政策文件，格式包括 PDF、Word 和网页存档，希望提取其中的标题、发布日期、发文机关等信息，并建立一份能够追溯原始来源的数据表。</p>
+<p>如果采用普通的 Tool 使用方式，我们可以让 AI 一批批处理文件，再根据需要继续下达指令。</p>
+<p>如果采用 <strong class="concept">Copilot</strong> 的持续协作方式，可以把相关资料保存在项目空间中，逐步讨论提取标准、整理数据并检查结果。</p>
+<p>但如果我们使用具备相应工具能力的 <strong class="concept">Agent</strong>，就可以尝试让它接手更完整的执行过程。</p>
+<p>例如，它可以先检查工作目录，识别文件格式，制定处理方案，再选择合适的工具逐份提取信息。</p>
+<p>如果发现部分 PDF 无法正常解析，它可以尝试其他可用的读取方式；如果某些文件缺少日期，就将它们标记为待核验；如果输出结果中存在明显重复，还可以进一步检查原始文件与记录之间的对应关系。</p>
+<p>完成这些工作后，它可以生成数据表、异常记录和处理说明，再交给我们验收。</p>
+<p>在这个过程中，AI 不断经历一个循环：</p>
+<p><strong>理解当前状态 → 选择下一步操作 → 调用工具 → 检查反馈 → 继续或调整执行。</strong></p>
+<p><strong class="concept">Agent</strong> 能根据环境反馈组织关联操作，不必由我们亲自决定每一步使用什么工具和命令。</p>
+<p>无法判断的政策类别、缺失信息或不可靠的扫描结果，仍需报告给研究者核验。自主执行要真正减少重复操作，前提是输入、目标与验收标准足够清楚。</p>
+<h4 id="section-84">2. 有哪些值得了解的 Agent 产品？</h4><p>除了聊天产品中的 <strong class="concept">Agent</strong> 功能，开源、可定制的 <strong class="concept">Harness</strong> 也发展很快。下面介绍几款设计取向不同的产品（技术信息核对时间：2026 年 10 月 29 日）。</p>
+<p><strong>ChatGPT Work 与 Claude：面向日常知识工作的 Agent</strong></p>
+<p><a href="https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex">ChatGPT Work</a> 和 <a href="https://claude.com/product/cowork">Claude（原 Cowork 模式）</a> 都将 <strong class="concept">Agent</strong> 能力带入了相对成熟的应用界面。Claude 官方现已将 Cowork 的能力整合进 Claude，原产品介绍页仍可供参考。</p>
+<p>它们可以围绕文件、数据、研究与实际交付成果开展多步骤工作，并根据产品支持的功能使用浏览器或其他工具。</p>
+<p>如果你希望直接通过图形化界面体验 <strong class="concept">Agent</strong>，而暂时不打算研究底层配置，这类产品是比较容易上手的选择。</p>
+<p><strong>DeepSeek Harness（DSH）：高度可组合的开源 Harness</strong></p>
+<p><a href="https://www.deepseek.com/zh/harness/">DeepSeek Harness</a> 是 DeepSeek 推出的开源 <strong class="concept">Agent</strong> <strong class="concept">Harness</strong>。</p>
+<p>它基于 Cordis 的插件化架构构建，模型、工具、技能、会话等能力可以通过相应的插件组合。</p>
+<p>DSH 目前仍处于预览阶段，提供桌面端，也支持通过命令行启动 Web 界面；核心插件与接口仍可能调整。</p>
+<p>它比较有意思的地方，是把 <strong class="concept">Harness</strong> 本身变成了一套可以检查、组合和扩展的系统。</p>
+<p>你可以直接用它完成文件处理、数据分析等任务，也可以进一步探索插件、<strong class="concept">Skill</strong> 和不同的运行方式。</p>
+<p>如果对 <strong class="concept">Agent</strong> 的内部工作机制感兴趣，DSH 很值得了解。</p>
+<p><strong>Hermes Agent：强调持续记忆与经验积累</strong></p>
+<p><a href="https://hermes-agent.nousresearch.com/docs/">Hermes Agent</a> 是 Nous Research 开发的开源 <strong class="concept">Agent</strong> 项目。</p>
+<p>它的一个突出特点，是将跨会话记忆与 <strong class="concept">Skill</strong> 系统紧密结合起来。</p>
+<p>在支持的环境中，Hermes 可以从工作经历中整理可复用的技能，在后续任务中重新调用，并持续更新相关记忆。</p>
+<p>此外，它也提供不同的运行和交互方式，可以通过终端、桌面应用及受支持的消息平台使用。</p>
+<p>对于希望探索长期个人 <strong class="concept">Agent</strong>、持续记忆与技能积累的同学，Hermes 提供了很有意思的实践方向。</p>
+<p><strong>Pi：从极简 Harness 开始，自由扩展工作方式</strong></p>
+<p><a href="https://pi.dev/">Pi</a> 则走了另一条路线。</p>
+<p>它是一款强调极简与可扩展性的 <strong class="concept">Agent</strong> <strong class="concept">Harness</strong>，保留相对精简的核心能力，同时允许用户通过 Extensions、<strong class="concept">Skill</strong>s 和其他机制定制自己的工作环境。</p>
+<p>Pi 并不试图把所有功能都预先集成进产品，而是将很大一部分扩展空间交给使用者。</p>
+<p>例如，你可以根据具体任务增加工具、调整执行方式，或者构建适合自己的<strong class="concept">工作流</strong>程。</p>
+<p>它对于希望理解 <strong class="concept">Agent</strong> <strong class="concept">Harness</strong> 的设计思路，甚至尝试自行扩展系统的人来说，具有很高的探索价值。</p>
+<p>这几款工具定位不同：ChatGPT Work 与 Claude 更偏向开箱即用，DSH、Hermes、Pi 则提供更多配置与扩展空间。产品功能可能随版本、地区及账号权限变化，具体以官方说明为准。</p>
+<h4 id="section-85">3. 第一次尝试：让 Agent 独立完成一段工作流程</h4><p>现在，我们回到前面的政策文件整理任务。</p>
+<p>为了更清楚地体验 <strong class="concept">Agent</strong><span class="action">，我建议不要只让它提取几个字段、生成一张表格。</span></p>
+<p>这样的操作虽然有用，但普通文件处理工具也可能顺利完成。</p>
+<p>我们可以尝试交给它一项更加完整的工作：</p>
+<p><strong>自行检查一批文件，设计并执行处理流程，发现异常后作出适当调整，最后提交可核验的结果。</strong></p>
+<p>例如，你可以先准备二十份不涉及敏感信息的公开文件，放入一个专门的测试文件夹。</p>
+<p>然后向具备相应文件及代码工具的 <strong class="concept">Agent</strong> 提出要求：</p>
+<blockquote>
+<p>请检查当前工作目录中的二十份政策文件，完成一次批量元数据整理。</p>
+<p>先识别文件格式和可读取情况，提出简短的执行计划。确认输入范围后，自行选择适当的工具完成信息提取、数据合并和必要的质量检查。</p>
+<p>对无法正常读取的文件，可以在允许的工具范围内尝试其他读取方式；如果仍然无法解决，请记录异常并继续处理其他文件。</p>
+<p>最终交付一份结构化数据表、一份异常与缺失记录，以及一份简短的执行报告。所有结果必须能够追溯到对应的原始文件。</p>
+<p>请不要修改原始材料，不要自行补全无法确认的事实，也不要访问任务目录以外的私人文件。</p>
+</blockquote>
+<p>要观察的重点，是 <strong class="concept">Agent</strong> 怎样组织执行过程：</p>
+<p>它是否先了解了文件结构，再决定怎样处理？</p>
+<p>当某个工具执行失败时，它是否能够定位原因，尝试合理的替代方案？</p>
+<p>当发现文件数量与输出记录不一致时，它是否会主动检查遗漏？</p>
+<p>当某些信息无法确认时，它能否保留问题，而不是编造一个看似完整的结果？</p>
+<p>这些行为才体现自主执行。对于已授权、可验证且风险较低的操作，不必逐次干预。</p>
+<p>但在它准备改变处理标准、覆盖重要文件或者执行超出任务范围的操作时，应当要求人工确认。</p>
+<p>完成之后，我们也不应该只看最终生成的表格是否漂亮。</p>
+<p>还需要检查原始文件数量与输出记录能否对应，异常是否得到完整记录，重要字段能否回到原文核验。</p>
+<p>如果发现问题，再根据执行记录判断究竟是哪一步发生了错误。</p>
+<p>这才构成从委托、执行到验收的完整体验。</p>
+<h4 id="section-86">4. Skill：将一套成功的方法交给 Agent</h4><p>当我们开始反复使用 <strong class="concept">Agent</strong> 时，很可能会发现这样一种情况：</p>
+<p>某些任务虽然涉及大量操作，但真正需要遵循的规则其实相当稳定。</p>
+<p>例如，处理公开政策文件时，我们可能总是希望先检查文件格式，再提取指定字段，最后核对输出记录和原始文件的对应关系。</p>
+<p>如果每次都重新向 <strong class="concept">Agent</strong> 描述这套要求，就会产生很多重复说明。</p>
+<p>这时候，<strong class="concept">Skill</strong> 便能够发挥作用。</p>
+<p>我们在第一篇已经介绍过 <strong class="concept">Skill</strong> 的基本概念，这里进一步看一下它在实际使用中怎样组织。</p>
+<p>按照<a href="https://agentskills.io/specification">公开的 Agent Skills 规范</a>，一份 <strong class="concept">Skill</strong> 通常由一个文件夹组织，其中至少包含 <code>SKILL.md</code> 文件。</p>
+<p>文件开头用 <code>name</code> 和 <code>description</code> 说明名称与适用条件，正文则用 Markdown 写清执行步骤和要求。</p>
+<p>例如，我们可以为刚才的文件整理任务创建这样一份 <strong class="concept">Skill</strong>：</p>
+<pre><code class="language-text">policy-file-audit/
+└── SKILL.md
+</code></pre>
+<p>其中，<code>SKILL.md</code> 的内容可以写成：</p>
+<pre><code class="language-markdown">---
+name: policy-file-audit
+description: 批量检查公开政策文件，提取元数据并生成可追溯的数据表及异常报告。
+---
+
+# 政策文件整理与核验
+
+## 适用场景
+当用户需要批量整理已有的公开政策文件时使用。
+
+## 工作步骤
+1. 清点输入文件，识别格式与可读取情况。
+2. 根据用户指定的字段提取原始信息。
+3. 对无法读取的文件尝试允许范围内的替代处理方式。
+4. 对缺失、冲突及无法确认的内容进行标记。
+5. 检查输入文件数与输出记录数是否对应。
+6. 生成数据表、异常记录和简短的执行报告。
+
+## 处理原则
+- 不根据常识猜测缺失字段。
+- 每条记录保留可追溯的原始文件信息。
+- 不修改输入目录中的原始文件。
+- 遇到无法可靠解决的问题，应当记录并交由用户核验。
+
+## 输出成果
+- 一份结构化数据表
+- 一份异常与缺失记录
+- 一份处理情况说明
+</code></pre>
+<p>这份基础 <strong class="concept">Skill</strong> 将反复使用的操作方法整理成可复用的文件。</p>
+<p>一些支持 <strong class="concept">Agent</strong> <strong class="concept">Skill</strong>s 规范的工具，会先读取 <strong class="concept">Skill</strong> 的名称和描述，在相关任务出现时，再加载其中的详细说明。</p>
+<p>因此，<code>description</code> 不只是普通的介绍文字，它还需要清楚说明这份 <strong class="concept">Skill</strong> 适用于什么任务。</p>
+<p>当然，文件建好之后，还需要按照具体产品的要求，将 <strong class="concept">Skill</strong> 放入支持的目录或通过对应功能导入。</p>
+<p>不同 <strong class="concept">Harness</strong> 的发现路径和启用方式可能有所不同，不能认为只要在电脑上创建一个 <code>SKILL.md</code> 文件，所有 <strong class="concept">Agent</strong> 就都会自动使用它。</p>
+<p>导入后应实际运行并检查是否正确加载；若某个检查步骤反复被遗漏，再修改说明。</p>
+<p>如果遇到大量相似文件处理任务，还可以逐渐加入更明确的字段规则、参考模板，或者用于自动核验的程序脚本。</p>
+<p>在较为完整的 <strong class="concept">Skill</strong> 中，除了 <code>SKILL.md</code>，还可以包含 <code>scripts/</code>、<code>references/</code> 和 <code>assets/</code> 等目录，用于保存可执行程序、参考资料与模板。</p>
+<p>但对初学者来说，先掌握一份简单的 <code>SKILL.md</code> 已经足够。</p>
+<p>我想特别强调，<strong class="concept">Skill</strong> 不只是一个写得比较长的<strong class="concept">提示词</strong>。</p>
+<p>当它包含稳定的工作规则、配套资源与检查程序，并能够被 <strong class="concept">Agent</strong> 在不同任务中复用时，就有机会成为一套真正可以持续改进的工作方法。</p>
+<p>这也能够帮助我们理解 Hermes 等 <strong class="concept">Agent</strong> 为什么会重视技能积累。</p>
+<p>随着任务经验不断增加，用户可以逐渐将有效的方法保存下来，减少重复说明，也让某些工作变得更加稳定。</p>
+<p>不过，<strong class="concept">Skill</strong> 并不自动赋予 <strong class="concept">Agent</strong> 新的文件权限或外部工具能力。它可以指导 <strong class="concept">Agent</strong> 怎样使用现有能力，却不能替代必要的工具配置与执行环境。</p>
+<h4 id="section-87">5. 看懂执行过程，才能真正验收 Agent 的成果</h4><p>最后，我想补充一项在实际使用中非常重要的能力：检查 <strong class="concept">Agent</strong> 究竟做了什么。</p>
+<p><strong class="concept">Agent</strong> 可能连续调用工具、修改文件，并根据反馈调整方案。因此，验收还要检查执行过程。</p>
+<p><span class="action">以刚才的文件整理任务为例，一次相对完整的交付，最好能够让我们检查三个方面。</span></p>
+<p>首先是<strong>成果本身</strong>：生成了哪些文件，数据内容是否符合要求，是否存在明显遗漏或错误。</p>
+<p>其次是<strong>处理过程</strong>：<strong class="concept">Agent</strong> 实际读取了哪些输入，采用了什么处理方式，哪些步骤失败或重新执行过。</p>
+<p>最后是<strong>异常与不确定性</strong>：哪些文件没有成功处理，哪些字段无法确认，哪些结论仍然需要人工检查。</p>
+<p>如果这些信息缺失，我们就很难判断结果是否可靠。</p>
+<p>在正式执行前，也应该明确任务的授权边界。</p>
+<p>例如，允许读取哪些目录，可以创建哪些输出文件，是否允许联网，以及什么情况下必须暂停并请求确认。</p>
+<p>特别是涉及原始文件覆盖、重要资料删除、外部账号操作或敏感数据传输时，不能仅仅依靠一句普通的<strong class="concept">提示词</strong>来保证安全，还需要使用产品提供的实际权限控制与审批机制。</p>
+<p>各产品的日志和权限控制不同；重要任务应先用少量材料验证，再扩大范围。</p>
+<p>使用 <strong class="concept">Agent</strong>，不只是提出问题，还要明确目标与边界，决定何时允许系统自主推进，并依据执行记录验收成果。人机协作由此延伸到对完整执行过程的组织与管理。</p>
+<p>接下来，我们就可以回到这篇入门指南最实际的一个问题：面对这么多工具和方法，怎样从自己的真实需要出发，逐渐形成合适的 AI 使用习惯？</p>
+<hr>
+<h3 id="section-88">十四、从一次真实任务出发：建立自己的 AI 使用方式</h3><p>认识这些工具之后，真正开始实践并不需要先掌握全部功能。</p>
+<p><strong>从最近真正需要解决的一件事情开始，就足够了。</strong></p>
+<h4 id="section-89">1. 先把一件事情完整做完</h4><p>比如，你正好需要整理一份活动记录，就试着让 AI 制作工作表，再亲自打开文件核对内容；如果有一个始终没弄懂的概念，就和它讨论，直到自己能够向同学解释；如果正在推进一个长期项目，可以尝试整理资料和阶段性记录，让工作在不同会话之间保持连续。</p>
+<p>完成之后，不妨回头检查一次：AI 实际解决了什么困难？哪些地方节省了时间？又有哪些错误和返工，让事情变得更麻烦？</p>
+<p>这些问题只有在真实使用中才能逐渐回答。比起安装了多少工具，更重要的是你是否能够完成任务，并判断这种工作方式是否值得下次继续采用。</p>
+<h4 id="section-90">2. 把有效的经验留下来</h4><p>使用 AI 的次数多了，你可能逐渐形成一些适合自己的方法：某种对话方式帮助你理解难读的文献，某套检查步骤能够发现论文中的论证漏洞，或者一种项目记录习惯让长期协作更加顺畅。</p>
+<p>不妨把这些经验保存下来。最初，普通笔记就足够了；等到某套方法反复得到检验，再考虑把它整理成工作模板、项目说明或 <strong class="concept">Skill</strong>。如果它也适合其他人，在符合版权、隐私与资料使用要求的前提下，还可以尝试分享。</p>
+<p>工具会继续变化，你的方法也会不断调整。让自己从一项真实任务中积累一点能够带走的经验，比追着每一次产品更新重新搭建系统更有意义。</p>
+<p>让这次尝试成为下一次实践的起点。</p>
+<h2 id="section-91">结语：在变化中生长</h2><p>写到这里，《人文社科大学生 AI 入门 101》也接近尾声了。</p>
+<p>如果你在几年之后重新打开这篇文章，可能会发现其中不少技术介绍已经过时。今天流行的模型也许早已被新的模型取代，一些我们现在还需要专门学习的操作，可能已经变成普通软件中随手可用的功能。至于未来的人机交互会发展成什么样子，坦白说，我也很难想象。</p>
+<p>但我觉得，这并没有什么值得遗憾的。</p>
+<p>我们正在经历一个技术快速变化的时代，任何一份具体的操作指南，都很难保证自己能够长期适用。今天花费不少时间学习的工具，明天可能就会出现更加方便的替代品。</p>
+<p>真正值得我们长期培养的，是面对这些变化时不断学习、尝试和调整自身能力的意识。</p>
+<p>我想把这种意识称为一种<strong>自适应的精神</strong>。</p>
+<p>它意味着我们愿意走出自己已经熟悉的知识与经验，主动接触新的技术和方法，也能够根据实际需要不断调整自己的工作方式。</p>
+<p>如果某项新技术确实能够帮助我们解决过去难以处理的问题，就大胆尝试；如果一种已经习惯的工作方法逐渐暴露出局限，也不必过于留恋。</p>
+<p>当然，适应变化也需要<strong class="concept">判断力</strong>。我们没有必要追逐每一款新产品，也不必因为某种技术突然流行，就急于将它引入自己的全部工作。</p>
+<p>随着经验逐渐积累，我们应该越来越清楚自己希望解决什么问题，哪些方法真正有效，以及什么样的变化值得投入时间。</p>
+<p>与此同时，我也希望大家能够保留一种开放与共享的态度。</p>
+<p>今天我们能够接触到的许多 AI 模型、工具与方法，都离不开研究者、开发者和开源社区持续的探索与交流。</p>
+<p>许多人愿意将自己的代码、经验和失败教训分享出来，使后来者不必每次都从头开始。</p>
+<p>我们当然可以从中受益，也可以逐渐尝试成为其中的一部分。</p>
+<p>或许你将来会整理出一套很好用的文献阅读方法，编写一份帮助同学解决实际问题的 <strong class="concept">Skill</strong>，或者因为某项课程研究的需要，做出一个有趣的小工具。</p>
+<p>这些成果未必需要多么复杂。只要经过认真检验，并且符合必要的版权、隐私和使用规范，就可能对其他人有所帮助。</p>
+<p>知识与技术的发展，本来就离不开这样的交流、批评和不断修正。</p>
+<p>不过，写到最后，我还有一个更想与大家分享的想法。</p>
+<p><strong>在一个越来越容易获得答案的时代，我们尤其需要保留直面复杂性的勇气。</strong></p>
+<p>这可能是我认为人文社科大学生最值得珍惜的一种能力。</p>
+<p>AI 非常擅长将纷繁的信息组织成清晰、完整、看起来颇有说服力的回答。但我们真正面对的世界，往往远比这些回答复杂。</p>
+<p>历史的发展充满偶然，社会制度的运行受到各种条件的影响，真实的人也有着不同的经验、处境和想法。</p>
+<p>我们在研究中可能遇到相互矛盾的材料、无法轻易调和的理论，以及暂时找不到合理解释的现象。</p>
+<p>有些问题，经过几轮对话就能获得不错的启发；另一些问题，即使阅读了大量文献、走访了许多地方，我们也未必能够形成满意的结论。</p>
+<p>这种不确定性，有时确实令人沮丧。</p>
+<p>尤其当 AI 能够在几秒钟内提供一套结构完整的解释时，我们可能很容易接受它给出的答案，不再继续追问。</p>
+<p>但我希望大家能够对这些暂时无法解决的问题保留一点耐心。</p>
+<p>如果一份材料与我们原有的认识不一致，不妨多读一遍；如果某个社会现象无法被现成的理论解释，或许值得进一步了解它发生的具体情境；如果一项研究的结果不符合预期，也不必急着寻找一个看起来圆满的说法。</p>
+<p>很多有意思的问题，可能正是在这些时刻逐渐浮现出来的。</p>
+<p>技术的发展让我们有机会阅读更多材料、尝试更多方法，也减少了不少重复性劳动。我希望，我们能够将由此获得的时间和精力，重新投入那些真正值得理解的事情。</p>
+<p>毕竟，大学生活本身也远不只有知识与技能的积累。</p>
+<p>你可能因为一堂课开始对某个陌生的领域产生兴趣，因为与老师的一次争论而重新思考原本确信的观点，也可能在一次田野调查中发现，自己此前对于某个社会群体的理解有多么有限。</p>
+<p>你还会读到一些让自己困惑许久的著作，认识来自不同地方、拥有不同经历的朋友，甚至在原本毫无准备的情况下，遇见一个真正愿意长期研究的问题。</p>
+<p>这些经历未必能够立刻转化为一份成果，却可能在不知不觉中改变我们理解世界的方式。</p>
+<p>AI 可以参与其中的许多环节，为我们提供知识、工具和新的思考线索。但我们仍然需要亲自阅读、观察、交流，走进那些无法通过聊天窗口完整呈现的现实情境。</p>
+<p>对于人文社科学生来说，这一点尤其重要。</p>
+<p>我们研究历史、制度、文化与社会生活，最终仍然要面对真实的世界，以及生活在其中的人。</p>
+<p>我很期待，在未来的几年里，大家能够借助 AI 探索出更多有意思的研究方法和知识表达方式。</p>
+<p>也许有人会重新整理一批鲜有人关注的历史档案，有人会完成过去因为技术限制而难以开展的数据分析，还有人会尝试一些我们现在尚未想到的研究与创作形式。</p>
+<p>这些可能性都值得期待。</p>
+<p>而对于刚刚进入大学的你，我想，也不必因为技术发展得太快，就担心自己已经落在了时代后面。</p>
+<p>你还有足够多的时间去阅读、学习、尝试，去犯错，也去修正自己的认识。</p>
+<p>从一个真正感兴趣的问题开始就好。</p>
+<p>希望未来的大学生活中，我们既能够自如地使用新的工具，也能够逐渐形成自己的经验与判断；既愿意向他人学习，也乐于分享自己的发现；既有勇气探索未知，也有耐心面对那些暂时没有答案的问题。</p>
+<p><strong>愿你在一个越来越容易得到答案的时代，始终保有提出问题的好奇心，以及亲自走进世界的勇气。</strong></p>
+<p>这或许就是我最希望与你分享的，属于 AI 时代的大学精神。</p>
+</article><footer class="endnote"><span>END OF FIELD NOTES / 101</span><a href="https://jinhuazhang.top/portfolio/">返回作品集 ↗</a></footer></main></div><a class="backtop" href="#" aria-label="返回顶部">↑</a><script>(() => {
+  const focus = document.querySelector('#focus');
+  const marks = document.querySelector('#marks');
+  focus.addEventListener('click', () => {
+    const on = document.body.classList.toggle('focused');
+    focus.setAttribute('aria-pressed', String(on));
+    focus.textContent = on ? '显示目录' : '专注阅读';
+  });
+  marks.addEventListener('click', () => {
+    const off = document.body.classList.toggle('unmarked');
+    marks.setAttribute('aria-pressed', String(!off));
+    marks.textContent = off ? '显示标记' : '隐藏标记';
+  });
+  const progress = document.querySelector('#progress');
+  function update() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + '%';
+  }
+  addEventListener('scroll', update, {passive:true});
+  addEventListener('resize', update);
+  update();
+  const links = [...document.querySelectorAll('nav a')];
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        links.forEach(a => { const active = a.hash === '#' + entry.target.id; a.classList.toggle('active', active); if(active) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current'); });
+      }
+    }, {rootMargin:'0px 0px -65% 0px'});
+    document.querySelectorAll('article h2,article h3').forEach(h => observer.observe(h));
+  }
+})();
+</script></body></html>
